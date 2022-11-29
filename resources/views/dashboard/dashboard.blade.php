@@ -7,33 +7,17 @@
 
         <!--start breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Dashboard</div>
-            <div class="ps-3">
+            <div class="">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0 align-items-center">
-                        <li class="breadcrumb-item"><a href="javascript:;">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.dashboard') }}">
                                 <ion-icon name="home-outline"></ion-icon>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">eCommerce</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
-            </div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary">Settings</button>
-                    <button type="button"
-                        class="btn btn-outline-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-                        data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a
-                            class="dropdown-item" href="javascript:;">Action</a>
-                        <a class="dropdown-item" href="javascript:;">Another action</a>
-                        <a class="dropdown-item" href="javascript:;">Something else here</a>
-                        <div class="dropdown-divider"></div> <a class="dropdown-item"
-                            href="javascript:;">Separated link</a>
-                    </div>
-                </div>
             </div>
         </div>
         <!--end breadcrumb-->
@@ -458,7 +442,10 @@
     {{-- <!-- end page content--> --}}
 </div>
 @push('custom_scripts')
-
+ {{-- plugins --}}
+ <script src="{{ asset('backend/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+ <script src="{{ asset('backend/plugins/chartjs/chart.min.js') }}"></script>
+ <script src="{{ asset('backend/js/index.js') }}"></script>
 @endpush
 @endsection
 

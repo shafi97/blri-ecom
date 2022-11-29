@@ -1,7 +1,4 @@
 /* Nav  */
-/* .sidebar-wrapper .metismenu li:first-child {
-    margin-top: 0px;
-} */
 .sidebar-wrapper .metismenu a {
     padding: 2px 2px;
 }
@@ -11,4 +8,14 @@
 }
 .sidebar-wrapper .metismenu ul a {
     padding: 2px 15px 2px 15px;
+}
+
+.wrapper .page-content {
+    padding: 5px 1.5rem 1.5rem 1.5rem !important;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+    font-weight: bold;
 }
