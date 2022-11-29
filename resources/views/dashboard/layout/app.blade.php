@@ -22,6 +22,9 @@
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/icons.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     {{-- Theme Styles --}}
@@ -31,6 +34,7 @@
 
     {{-- <title>@yield('title') | {{ config('app.locale')=='en'?setting('app_name'):setting('app_name_b') }}</title> --}}
 </head>
+
 <body>
     {{-- start wrapper --}}
     <div class="wrapper">
@@ -87,9 +91,10 @@
     <script src="{{ asset('backend/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/js/bootstrap.bundle.min.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-
+    @include('sweetalert::alert')
     @stack('custom_scripts')
     {{-- Main JS --}}
     <script src="{{ asset('backend/js/main.js') }}"></script>
 </body>
+
 </html>

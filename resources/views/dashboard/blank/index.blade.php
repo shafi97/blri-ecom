@@ -41,6 +41,7 @@
                                     <th>Age</th>
                                     <th>Start date</th>
                                     <th>Salary</th>
+                                    <th width="80px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,6 +52,25 @@
                                     <td>61</td>
                                     <td>2011/04/25</td>
                                     <td>$320,800</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3 fs-6">
+                                            <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="View detail" aria-label="Views">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="Edit info" aria-label="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="Delete" aria-label="Delete">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -81,6 +101,7 @@
                                     <th>Age</th>
                                     <th>Start date</th>
                                     <th>Salary</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +112,25 @@
                                     <td>61</td>
                                     <td>2011/04/25</td>
                                     <td>$320,800</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-3 fs-6">
+                                            <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="View detail" aria-label="Views">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="Edit info" aria-label="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title=""
+                                                data-bs-original-title="Delete" aria-label="Delete">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
