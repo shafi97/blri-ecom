@@ -1,6 +1,6 @@
 @extends('auth.layout.app')
 @section('content')
-<!--start wrapper-->
+    <!--start wrapper-->
 
     @include('auth.layout.includes.navigation')
     <div class="container">
@@ -16,11 +16,17 @@
                             @csrf
                             <div class="col-12">
                                 <label for="inputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail">
+                                <input type="email" name="email" class="form-control" id="inputEmail">
+                                @if ($errors->has('email'))
+                                    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                                @endif
                             </div>
                             <div class="col-12">
                                 <label for="inputPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword">
+                                <input type="password" name="password" class="form-control" id="inputPassword">
+                                @if ($errors->has('password'))
+                                    <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+                                @endif
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="form-check form-switch">
@@ -35,13 +41,13 @@
                             </div>
                             <div class="col-12 col-lg-12">
                                 <div class="d-grid">
-                                    <button type="button" class="btn btn-primary">Sign In</button>
+                                    <button type="submit" class="btn btn-primary">Sign In</button>
                                 </div>
                             </div>
                             @include('auth.layout.includes.social')
                             <div class="col-12 col-lg-12 text-center">
-                                <p class="mb-0">Don't have an account? <a
-                                        href="authentication-sign-up-simple.html">Sign up</a></p>
+                                <p class="mb-0">Don't have an account? <a href="authentication-sign-up-simple.html">Sign
+                                        up</a></p>
                             </div>
                         </form>
                     </div>
@@ -50,5 +56,5 @@
         </div>
     </div>
 
-<!--end wrapper-->
+    <!--end wrapper-->
 @endsection

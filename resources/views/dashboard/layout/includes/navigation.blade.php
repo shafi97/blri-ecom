@@ -26,6 +26,25 @@
             </li>
         </ul>
     </li>
+{{-- settings --}}
+<li>
+    <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon">
+            <ion-icon name="bag-handle-sharp"></ion-icon>
+        </div>
+        <div class="menu-title">Settings</div>
+    </a>
+    <ul>
+        <li><a href="{{ route('admin.permission.index') }}">
+                <ion-icon name="ellipse-outline"></ion-icon>Role & Permission
+            </a>
+        </li>
+        <li><a href="{{ route('admin.blank.create') }}">
+                <ion-icon name="ellipse-outline"></ion-icon>create
+            </a>
+        </li>
+    </ul>
+</li>
 
     <li class="menu-label">Others</li>
     <li>
