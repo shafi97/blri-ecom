@@ -26,8 +26,11 @@
                 </div>
             </div>
             <!--end breadcrumb-->
+            <div class="d-flex justify-content-between index_title">
+                <h6 class="mb-0">DataTable Example</h6>
+                <button class="btn btn-primary">Add New</button>
+            </div>
 
-            <h6 class="mb-0 text-uppercase">DataTable Example</h6>
             <hr />
             <div class="card">
                 <div class="card-body">
