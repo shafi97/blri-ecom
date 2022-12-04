@@ -35,8 +35,8 @@
         <div class="menu-title">Settings</div>
     </a>
     <ul>
-        <li><a href="{{ route('admin.permission.index') }}">
-                <ion-icon name="ellipse-outline"></ion-icon>Role & Permission
+        <li><a href="{{ route('admin.role.index') }}" >
+                <ion-icon name="ellipse-outline"></ion-icon>Roles & Permission
             </a>
         </li>
         <li><a href="{{ route('admin.blank.create') }}">

@@ -84,13 +84,14 @@
         {{-- end overlay --}}
     </div>
     {{-- end wrapper --}}
-
+    <div id="ajax_modal_container"></div>
     {{-- JS Files --}}
     <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/js/bootstrap.bundle.min.js') }}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
     @include('sweetalert::alert')
     @stack('custom_scripts')
     {{-- Main JS --}}

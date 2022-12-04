@@ -30,7 +30,7 @@
                 <h6 class="mb-0">DataTable Example</h6>
 
                 @can('permission-add')
-                    <a data-toggle="modal" data-target="#createModal" class="btn btn-primary btn-round ml-auto text-light"
+                    <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary"
                         style="min-width: 200px">
                         <i class="fa fa-plus"></i> Add New
                     </a>
@@ -99,6 +99,46 @@
         </div>
         <!-- end page content-->
     </div>
+
+    @can('permission-add')
+    <!-- Modal -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Permission</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="{{ route('admin.permission.store') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="module" class="form-label required">Module </label>
+                                <input type="search" name="module" class="form-control" value="{{ old('module') }}" required />
+                                @if ($errors->has('module'))
+                                    <div class="alert alert-danger">{{ $errors->first('module') }}</div>
+                                @endif
+                            </div>
+                            <div class="col-md-12">
+                                <label for="name" class="form-label required">Name </label>
+                                <input type="search" name="name" class="form-control" value="{{ old('name') }}" required />
+                                @if ($errors->has('name'))
+                                    <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endcan
+
     @push('custom_scripts')
         @include('dashboard.layout.includes.data_table_js')
     @endpush
