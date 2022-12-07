@@ -41,7 +41,7 @@ $(function() {
   $(".btn-mobile-filter").on("click", function() {
 		$(".filter-sidebar").removeClass("d-none");
 	}),
-  
+
     $(".btn-mobile-filter-close").on("click", function() {
 		$(".filter-sidebar").addClass("d-none");
 	}),
@@ -61,7 +61,7 @@ $(function() {
 
   }),
 
-  
+
 
 
   $(document).ready(function() {
@@ -77,23 +77,39 @@ $(function() {
 
 
 
+//   $(".dark-mode-icon").on("click", function() {
+//     sessionStorage.setItem("sunny", "sunny-sharp");
+//     if($(".mode-icon ion-icon").attr("name") == sessionStorage.getItem("sunny")) {
+//         $(".mode-icon ion-icon").attr("name", "moon-sharp");
+//         sessionStorage.setItem("light", "light-theme");
+//         $("html").attr("class", sessionStorage.getItem("light"))
+//     } else {
+//         $(".mode-icon ion-icon").attr("name", "sunny-sharp");
+//         sessionStorage.setItem("dark", "dark-theme");
+//         $("html").attr("class", sessionStorage.getItem("dark"))
+//     }
+
+//   }),
+
+
   $(".dark-mode-icon").on("click", function() {
 
     if($(".mode-icon ion-icon").attr("name") == 'sunny-sharp') {
         $(".mode-icon ion-icon").attr("name", "moon-sharp");
+
         $("html").attr("class", "light-theme")
     } else {
         $(".mode-icon ion-icon").attr("name", "sunny-sharp");
         $("html").attr("class", "dark-theme")
     }
 
-  }), 
+  }),
 
 
 
 
 
-// Theme switcher 
+// Theme switcher
 
 $("#LightTheme").on("click", function() {
   $("html").attr("class", "light-theme")
@@ -108,7 +124,7 @@ $("#SemiDark").on("click", function() {
 }),
 
 
-// headercolor colors 
+// headercolor colors
 
 $("#headercolor1").on("click", function() {
   $("html").addClass("color-header headercolor1"), $("html").removeClass("headercolor2 headercolor3 headercolor4 headercolor5 headercolor6 headercolor7 headercolor8")
@@ -129,7 +145,7 @@ $("#headercolor1").on("click", function() {
 })
 
 
-// sidebar colors 
+// sidebar colors
 $('#sidebarcolor1').click(theme1);
 $('#sidebarcolor2').click(theme2);
 $('#sidebarcolor3').click(theme3);
@@ -186,8 +202,8 @@ function theme8() {
     })
 
 
-  
 
-  
-    
+
+
+
 });

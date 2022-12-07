@@ -53,9 +53,9 @@ if (!function_exists('activeSubNav')) {
             foreach ($route as $rut) {
                 $rt .= request()->routeIs($rut) || '';
             }
-            return $rt ? ' activeSub ' : '';
+            return $rt ? ' mm-active ' : '';
         }
-        return request()->routeIs($route) ? ' activeSub ' : '';
+        return request()->routeIs($route) ? ' mm-active ' : '';
     }
 }
 
@@ -67,9 +67,9 @@ if (!function_exists('activeNav')) {
             foreach ($route as $rut) {
                 $rt .= request()->routeIs($rut) || '';
             }
-            return $rt ? ' active ' : '';
+            return $rt ? ' mm-active ' : '';
         }
-        return request()->routeIs($route) ? ' active ' : '';
+        return request()->routeIs($route) ? ' mm-active ' : '';
     }
 }
 
@@ -80,7 +80,7 @@ if (!function_exists('openNav')) {
         foreach ($routes as $route) {
             $rt .= request()->routeIs($route) || '';
         }
-        return $rt ? ' show ' : '';
+        return $rt ? ' mm-collapse mm-show ' : '';
     }
 }
 if (!function_exists('userCan')) {

@@ -62,7 +62,7 @@
                                         <td>{{ ucfirst($role->name) }}</td>
                                         <td>{{ $role->users->count() }}</td>
                                         <td>{{ $role->created_at->format('d M, Y h:i A') }}</td>
-                                        <td>
+                                        <td class="">
                                             <div class="d-flex align-items-center gap-3 fs-6">
                                                 @can('permission-change')
                                                     <a href="{{ route('admin.role.show', $role->id) }}" class="text-success"
@@ -114,7 +114,7 @@
     @can('role-add')
         <!-- Modal -->
         <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Role</h5>

@@ -30,12 +30,13 @@
 <li>
     <a href="javascript:;" class="has-arrow">
         <div class="parent-icon">
-            <ion-icon name="bag-handle-sharp"></ion-icon>
+            <i class="fa-solid fa-gear"></i>
         </div>
         <div class="menu-title">Settings</div>
     </a>
     <ul>
-        <li><a href="{{ route('admin.role.index') }}" >
+        <li class="{{ activeNav('admin.permission.*') }}">
+            <a href="{{ route('admin.role.index') }}" >
                 <ion-icon name="ellipse-outline"></ion-icon>Roles & Permission
             </a>
         </li>

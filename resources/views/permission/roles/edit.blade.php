@@ -1,14 +1,14 @@
 
   <!-- Modal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Permission</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" action="{{ route('admin.role.update', $role->id) }}">
-                @csrf
+                @csrf @method('PUT')
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">

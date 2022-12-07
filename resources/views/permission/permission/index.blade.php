@@ -63,7 +63,7 @@
                                                         data-value="{{ $permission->id }}" onclick="ajaxEdit(this)"
                                                         href="javascript:void(0)" class="text-warning" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title=""
-                                                        data-bs-original-title="@lang('app.edit') @lang('role.permission')"
+                                                        data-bs-original-title="Edit Permission"
                                                         aria-label="Edit">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
@@ -74,7 +74,7 @@
                                                         onclick="ajaxDelete(this, 'nodt')" href="javascript:void(0)"
                                                         class="text-danger" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title=""
-                                                        data-bs-original-title="@lang('app.delete') @lang('role.permission')"
+                                                        data-bs-original-title="Delete Permission"
                                                         aria-label="Delete">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
@@ -86,10 +86,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>@lang('app.sl')</th>
-                                    <th>@lang('app.module')</th>
-                                    <th>@lang('app.name')</th>
-                                    <th width="80px">@lang('app.action')</th>
+                                    <th>SL</th>
+                                    <th>Module</th>
+                                    <th>Name</th>
+                                    <th class="no-sort" width="80px">Action</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -103,7 +103,7 @@
     @can('permission-add')
     <!-- Modal -->
     <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add Permission</h5>
