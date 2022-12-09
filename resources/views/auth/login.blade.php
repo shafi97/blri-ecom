@@ -11,22 +11,25 @@
                         <div class="text-center">
                             <h4>Sign In</h4>
                             <p>Sign In to your account</p>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                         <form action="{{ route('login') }}" method="post" class="form-body row g-3">
                             @csrf
                             <div class="col-12">
                                 <label for="inputEmail" class="form-label">Email</label>
                                 <input type="email" name="email" class="form-control" id="inputEmail">
-                                @if ($errors->has('email'))
-                                    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
-                                @endif
                             </div>
                             <div class="col-12">
                                 <label for="inputPassword" class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control" id="inputPassword">
-                                @if ($errors->has('password'))
-                                    <div class="alert alert-danger">{{ $errors->first('password') }}</div>
-                                @endif
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="form-check form-switch">
