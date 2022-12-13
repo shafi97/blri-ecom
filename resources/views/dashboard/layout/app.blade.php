@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="light-theme">
+<html lang="en" class="">
 
 <head>
     {{-- Required meta tags --}}
@@ -48,6 +48,7 @@
                     <h4 class="logo-text">SYN-UI</h4>
                 </div>
                 <div class="toggle-icon ms-auto">
+
                     <ion-icon name="menu-sharp"></ion-icon>
                 </div>
             </div>

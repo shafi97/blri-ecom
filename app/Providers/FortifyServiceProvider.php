@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
@@ -61,11 +62,11 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.passwords.email');
+            return view('auth.forgot_password');
         });
 
         Fortify::resetPasswordView(function ($request) {
-            return view('auth.passwords.reset', ['token' => $request->token,'request' => $request]);
+            return view('auth.reset_password', ['token' => $request->token,'request' => $request]);
         });
 
         Fortify::confirmPasswordView(function () {
@@ -77,17 +78,16 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         // Custom Login Validation
-        // Fortify::authenticateUsing(function (Request $request) {
-        //     $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        //     $user = User::where($fieldType, $request->email)->first();
-        //     // if ($user && $user->status == 'deactive') {
-        //     //     return false;
-        //     //     return redirect()->route('login')->withErrors('Account is inactive');
-        //     // }
-
-        //     if ($user && Hash::check($request->password, $user->password)) {
-        //         return $user;
-        //     }
-        // });
+        Fortify::authenticateUsing(function (Request $request) {
+            $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            $user = User::where($fieldType, $request->email)->first();
+            // if ($user && $user->status == 'deactive') {
+            //     return false;
+            //     return redirect()->route('login')->withErrors('Account is inactive');
+            // }
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember && $user && Hash::check($request->password, $user->password))) {
+                return $user;
+            }
+        });
     }
 }

@@ -23,9 +23,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        // if ($error = $this->authorize('permission-manage')) {
-        //     return $error;
-        // }
+        if ($error = $this->authorize('permission-manage')) {
+            return $error;
+        }
         $permissions = Permission::all();
         return view('permission.permission.index')->with('permissions', $permissions);
     }

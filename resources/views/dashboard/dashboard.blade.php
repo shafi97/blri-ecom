@@ -186,7 +186,7 @@
         <!--end row-->
 
 
-        <div class="card radius-10 w-100">
+        {{-- <div class="card radius-10 w-100">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <h6 class="mb-0">Recent Orders</h6>
@@ -437,7 +437,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     {{-- <!-- end page content--> --}}
 </div>

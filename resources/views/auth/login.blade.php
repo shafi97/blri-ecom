@@ -33,14 +33,14 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch"
+                                    <input class="form-check-input" type="checkbox" name="remember" role="switch"
                                         id="flexSwitchCheckRemember">
                                     <label class="form-check-label" for="flexSwitchCheckRemember">Remember
                                         Me</label>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 text-end">
-                                <a href="authentication-reset-password-simple.html">Forgot Password?</a>
+                                <a href="{{ route('password.request') }}">Forgot Password?</a>
                             </div>
                             <div class="col-12 col-lg-12">
                                 <div class="d-grid">

@@ -13,20 +13,15 @@
                                 <h4>Reset password</h4>
                                 <p>You will receive an e-mail in maximum 60 seconds</p>
                             </div>
-                            <form action="{{ route('password.update') }}" method="post" class="form-body row g-3">
+                            <form action="{{ route('password.email') }}" method="post" class="form-body row g-3">
                                 @csrf
-                                <input type="hidden" name="token" value="{{ $token }}">
                                 <div class="col-12">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="email" name="email" class="form-control" id="">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" name="password_confirmation" class="form-control" id="inputPassword">
+                                    <label for="inputEmail" class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail"
+                                        placeholder="abc@example.com">
+                                    @if ($errors->has('email'))
+                                        <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                                    @endif
                                 </div>
                                 <div class="col-12 col-lg-12">
                                     <div class="d-grid">

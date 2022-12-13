@@ -11,6 +11,7 @@ Route::resource('blank', BlankController::class)->except(['store','edit', 'updat
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+
 // Global Ajax Route
 Route::delete('delete-all/{model}', [AjaxController::class, 'deleteAll'])->name('delete_all');
 Route::delete('force-delete-all/{model}', [AjaxController::class, 'forceDeleteAll'])->name('force_delete_all');
