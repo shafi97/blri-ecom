@@ -48,7 +48,6 @@
                     <h4 class="logo-text">SYN-UI</h4>
                 </div>
                 <div class="toggle-icon ms-auto">
-
                     <ion-icon name="menu-sharp"></ion-icon>
                 </div>
             </div>
@@ -77,7 +76,7 @@
         {{-- End Back To Top Button --}}
 
         {{-- start switcher --}}
-        @include('dashboard.layout.includes.switcher')
+        {{-- @include('dashboard.layout.includes.switcher') --}}
         {{-- end switcher --}}
 
         {{-- start overlay --}}

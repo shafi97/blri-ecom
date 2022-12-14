@@ -44,6 +44,15 @@
             <hr />
             <div class="card">
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width: 100%">
                             <thead class="bg-primary text-light">
@@ -52,7 +61,7 @@
                                     <th>Name</th>
                                     <th>Total User</th>
                                     <th>Created at</th>
-                                    <th class="no-sort" width="80px">Action</th>
+                                    <th class="no-sort" width="60px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,7 +92,7 @@
                                                 @if ($role->removable && user()->can('role-delete'))
                                                     <a data-route="{{ route('admin.role.destroy', $role->id) }}"
                                                         data-value="{{ $role->id }}" onclick="ajaxDelete(this, 'nodt')"
-                                                        href="javascript:void(0)" class="btn btn-danger btn-sm"
+                                                        href="javascript:void(0)" class="text-danger"
                                                         data-bs-placement="bottom" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Delete Role" title="">
                                                         <i class="fa fa-trash"></i>
@@ -120,7 +129,7 @@
                         <h5 class="modal-title">Add Role</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="POST" action="{{ route('admin.role.store') }}">
+                    <form action="{{ route('admin.role.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row">

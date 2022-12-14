@@ -292,23 +292,21 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                          <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button type="submit" class="dropdown-item" href="">
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <ion-icon name="log-out-outline"></ion-icon>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item" href="">
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <ion-icon name="log-out-outline"></ion-icon>
+                                        </div>
+                                        <div class="ms-3"><span>Logout</span></div>
                                     </div>
-                                    <div class="ms-3"><span>Logout</span></div>
-                                </div>
-                            </button>
-                          </form>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </li>
-
             </ul>
-
         </div>
     </nav>
 </header>

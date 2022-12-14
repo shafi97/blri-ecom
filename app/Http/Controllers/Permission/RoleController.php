@@ -42,7 +42,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        if ($error = $this->authorize('role-create')) {
+        if ($error = $this->authorize('role-add')) {
             return $error;
         }
         return view('permission.roles.create');
@@ -56,7 +56,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($error = $this->authorize('role-create')) {
+        if ($error = $this->authorize('role-add')) {
             return $error;
         }
         // Reset cached roles and permissions
@@ -65,12 +65,13 @@ class RoleController extends Controller
         $this->validate($request, [
             'name' => 'required|min:4|max:20|regex:/^[a-zA-Z0-9\-_\.]+$/|unique:roles,name',
         ], [
-          'regex' => 'Invalid Entry! Only letters,underscores,hypens and numbers are allowed',
+          'regex' => 'Invalid Entry! Only letters,underscores, hype\'s and numbers are allowed',
         ]);
 
         $role = Role::create([
             'name' => str_replace(' ', '-', strtolower($request->name))
         ]);
+
 
         // Logging activity for created role
         // activity()
@@ -120,9 +121,9 @@ class RoleController extends Controller
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // $permissions = $role->permissions()->get();
-        // $role->revokePermissionTo($permissions);
-        // $role->givePermissionTo($request->permissions);
+        $permissions = $role->permissions()->get();
+        $role->revokePermissionTo($permissions);
+        $role->givePermissionTo($request->permissions);
 
         // Logging activity for created role
         // activity()
