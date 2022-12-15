@@ -187,8 +187,8 @@ if (!function_exists('make_slug')) {
     }
 }
 
-if (!function_exists('niceNumber')) {
-    function niceNumber($n)
+if (!function_exists('readableSize')) {
+    function readableSize($n)
     {
         // first strip any formatting;
         $n = (0 + str_replace(",", "", $n));

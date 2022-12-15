@@ -34,10 +34,10 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="p-4 border rounded">
-                                <form class="row g-3 needs-validation">
+                                <form action="" method="post" class="row g-3 needs-validation">
                                     <div class="col-md-4">
                                         <label for="f_name" class="form-label required">First name </label>
-                                        <input type="text" name="f_name" class="form-control" required/>
+                                        <input type="text" name="f_name" class="form-control" value="{{ old('f_name') }}" required/>
                                         @if ($errors->has('f_name'))
                                             <div class="alert alert-danger">{{ $errors->first('f_name') }}</div>
                                         @endif

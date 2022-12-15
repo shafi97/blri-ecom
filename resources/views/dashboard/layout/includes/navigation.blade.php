@@ -42,13 +42,13 @@
                     <ion-icon name="ellipse-outline"></ion-icon>Roles & Permission
                 </a>
             </li>
-            <li><a href="{{ route('admin.blank.create') }}">
-                    <ion-icon name="ellipse-outline"></ion-icon>create
+            <li><a href="{{ route('admin.backup.password') }}">
+                    <ion-icon name="ellipse-outline"></ion-icon>App DB Backup
                 </a>
             </li>
         </ul>
     </li>
-    
+
     <li>
         <br>
         <br>
