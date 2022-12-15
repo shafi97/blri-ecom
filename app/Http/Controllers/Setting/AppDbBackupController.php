@@ -26,7 +26,7 @@ class AppDbBackupController extends Controller
             'password' => 'required|string',
         ]);
         session()->put('pass', $request->password);
-        $admin    = User::whereRole(1)->first();
+        $admin = User::whereRole(1)->first();
         if (Hash::check($request->password, $admin->password)) {
             return redirect()->route('admin.backup.index');
         }

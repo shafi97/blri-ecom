@@ -28,7 +28,7 @@
             <!--end breadcrumb-->
             <div class="d-flex justify-content-between index_title">
                 <h6 class="mb-0">DataTable Example</h6>
-                <button class="btn btn-primary">Add New</button>
+                <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add New</a>
             </div>
 
             <hr />
@@ -44,7 +44,7 @@
                                     <th>Age</th>
                                     <th>Start date</th>
                                     <th>Salary</th>
-                                    <th width="80px">Action</th>
+                                    <th class="no-sort" width="60px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,7 +104,7 @@
                                     <th>Age</th>
                                     <th>Start date</th>
                                     <th>Salary</th>
-                                    <th>Action</th>
+                                    <th class="no-sort" width="60px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,6 +153,38 @@
         </div>
         <!-- end page content-->
     </div>
+    @can('role-add')
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('admin.role.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="name" class="form-label required">Name </label>
+                                    <input type="search" name="name" id="name" class="form-control"
+                                        value="{{ old('name') }}" required />
+                                    @if ($errors->has('name'))
+                                        <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endcan
     @push('custom_scripts')
     @include('dashboard.layout.includes.data_table_js')
     @endpush

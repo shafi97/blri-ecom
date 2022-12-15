@@ -42,7 +42,8 @@
                     <ion-icon name="ellipse-outline"></ion-icon>Roles & Permission
                 </a>
             </li>
-            <li><a href="{{ route('admin.backup.password') }}">
+            <li class="{{ activeNav('admin.backup.*') }}">
+                <a href="{{ route('admin.backup.password') }}">
                     <ion-icon name="ellipse-outline"></ion-icon>App DB Backup
                 </a>
             </li>

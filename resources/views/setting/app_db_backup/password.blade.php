@@ -38,7 +38,7 @@
                                     @csrf
                                     <div class="col-md-4">
                                         <label for="password" class="form-label required">Password </label>
-                                        <input type="text" name="password" class="form-control" value="{{ old('password') }}" required/>
+                                        <input type="password" name="password" class="form-control" value="{{ old('password') }}" required/>
                                         @if ($errors->has('password'))
                                             <div class="alert alert-danger">{{ $errors->first('password') }}</div>
                                         @endif
