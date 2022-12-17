@@ -24,6 +24,14 @@ class RolesAndPermissionsSeeder extends Seeder
                 'access-dashboard',
                 'dashboard-manage',
             ],
+            'admin-user'=>[
+                'admin-user-manage',
+                'admin-user-add',
+                'admin-user-edit',
+                'admin-user-delete',
+                'admin-user-impersonate',
+                'admin-user-access-dashboard',
+            ],
             'user'=>[
                 'user-manage',
                 'user-add',

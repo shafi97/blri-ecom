@@ -11,16 +11,33 @@
     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="menu-title">Admin</div>
+        </a>
+        <ul>
+            <li class="{{ activeNav('admin.admin-user.*') }}">
+                <a href="{{ route('admin.admin-user.index') }}">
+                    <ion-icon name="ellipse-outline"></ion-icon>Admin User
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon">
                 <ion-icon name="bag-handle-sharp"></ion-icon>
             </div>
             <div class="menu-title">Blank</div>
         </a>
         <ul>
-            <li><a href="{{ route('admin.blank.index') }}">
+            <li>
+                <a href="{{ route('admin.blank.index') }}">
                     <ion-icon name="ellipse-outline"></ion-icon>Index
                 </a>
             </li>
-            <li><a href="{{ route('admin.blank.create') }}">
+            <li>
+                <a href="{{ route('admin.blank.create') }}">
                     <ion-icon name="ellipse-outline"></ion-icon>create
                 </a>
             </li>

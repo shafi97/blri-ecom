@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Admin\BlankController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Setting\AppDbBackupController;
 use App\Http\Controllers\Setting\Permission\RoleController;
@@ -33,4 +34,10 @@ Route::controller(AppDbBackupController::class)->prefix('app-db-backup')->group(
     Route::post('/backup-download/{name}/{ext}', 'downloadBackup')->name('backup.download');
     Route::post('/backup-delete/{name}/{ext}', 'deleteBackup')->name('backup.delete');
 });
+
+Route::resource('/admin-user', AdminUserController::class,[
+    'parameters' => [
+        'admin-user' => 'admin_user'
+    ]
+]);
 

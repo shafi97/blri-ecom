@@ -1,22 +1,46 @@
 <?php
 
 use Carbon\Carbon;
-use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Plugins\MenuBuilder\Page;
-use App\Models\Plugins\Credits\UserPoint;
-use App\Models\Plugins\Credits\PointSettings;
-use App\Models\Plugins\Credits\PointTransaction;
-use App\Models\Authorization\AuthorizationPermission;
 use App\Http\Controllers\Authorization\AuthorizationChecker;
 
-if (!function_exists('BdDate')) {
-    function BdDate($date)
-    {
+if(!function_exists('bdDate')){
+    function bdDate($date){
         return Carbon::parse($date)->format('d/m/Y');
     }
 }
+
+if(!function_exists('ageWithDays')){
+    function ageWithDays($d_o_b){
+        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months and %d days');
+    }
+}
+if(!function_exists('ageWithMonths')){
+    function ageWithMonths($d_o_b){
+        return Carbon::parse($d_o_b)->diff(Carbon::now())->format('%y years, %m months');
+    }
+}
+
+if (!function_exists('imageStore')) {
+    function imageStore(Request $request, $requestName, string $name, string $path)
+    {
+        if($request->hasFile($requestName)){
+            $pathCreate = public_path().$path;
+            !file_exists($pathCreate) ?? File::makeDirectory($pathCreate, 0777, true, true);
+
+            $image = $request->file($requestName);
+            $image_name = $name . uniqueId(10).'.'.$image->getClientOriginalExtension();
+            if ($image->isValid()) {
+                $request->image->move($path,$image_name);
+                return $image_name;
+            }
+        }
+    }
+}
+
+
 if (!function_exists('imagePath')) {
     function imagePath($folder, $image)
     {
