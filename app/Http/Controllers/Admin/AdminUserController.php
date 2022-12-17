@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\AdminUserStoreRequest;
+use App\Http\Requests\AdminUserUpdateRequest;
 
 class AdminUserController extends Controller
 {
@@ -18,8 +19,8 @@ class AdminUserController extends Controller
             return $error;
         }
         if ($request->ajax()) {
-            $users = User::whereIn('role',['1']);
-            return DataTables::of($users)
+            $admin_users = User::whereIn('role',['1']);
+            return DataTables::of($admin_users)
                 ->addIndexColumn()
                 ->addColumn('check', function ($row) {
                     return '<input type="checkbox" name="select[]" onclick="checkcheckbox()" id="check_'.$row->id.'" class="check" value="'.$row->id.'">';
@@ -64,8 +65,8 @@ class AdminUserController extends Controller
         }
 
         try {
-            $user = User::create($data);
-            $user->assignRole($request->role);
+            $admin_user = User::create($data);
+            $admin_user->assignRole($request->role);
             return response()->json(['message'=> __('app.success-message')], 200);
         } catch (\Exception $e) {
             return response()->json(['message'=>__('app.oops')], 500);
@@ -73,43 +74,45 @@ class AdminUserController extends Controller
         }
     }
 
-    public function edit(Request $request, User $user)
+    public function edit(Request $request, User $admin_user)
     {
-        if ($error = $this->authorize('user-edit')) {
+        if ($error = $this->authorize('admin-user-edit')) {
             return $error;
         }
         if ($request->ajax()) {
             $roles = Role::all();
-            $modal = view('dashboard.admin_user.edit')->with(['user' => $user, 'roles' => $roles])->render();
+            $modal = view('dashboard.admin_user.edit')->with(['admin_user' => $admin_user, 'roles' => $roles])->render();
             return response()->json(['modal' => $modal], 200);
         }
         return abort(500);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(AdminUserUpdateRequest $request, User $admin_user)
     {
-        if ($error = $this->authorize('user-add')) {
+        if ($error = $this->authorize('admin-user-add')) {
             return $error;
         }
         $data = $request->validated();
+        if(user()->email != $request->email){
+            $data['email'] = $request->email;
+        }
         if(isset($request->password)){
             $data['password'] = bcrypt($request->password);
         }
-
-        $image = User::find($user->id)->image;
+        $image = user()->image;
         if($request->hasFile('image')){
-            $data['image'] = imageUpdate($request, 'user', 'uploads/images/users/', $image);
+            $data['image'] = imageUpdate($request, 'image', 'user', 'uploads/images/user/', $image);
         }
-
         try {
-            $user->update($data);
+            $admin_user->update($data);
+            $admin_user->assignRole($request->role);
             // if($request->permission){
             //     $permission = [
             //         'role_id' =>  $request->permission,
             //         'model_type' => "App\Models\User",
-            //         'model_id' =>  $user->id,
+            //         'model_id' =>  $admin_user->id,
             //     ];
-            //     ModelHasRole::whereModel_id($user->id)->update($permission);
+            //     ModelHasRole::whereModel_id($admin_user->id)->update($permission);
             // }
             return response()->json(['message'=> 'Data Successfully Inserted'], 200);
         } catch (\Exception $e) {

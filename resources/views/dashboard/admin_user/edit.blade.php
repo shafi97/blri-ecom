@@ -6,9 +6,10 @@
                 <h5 class="modal-title">Add Admin User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.admin-user.update', 1) }}"
+            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.admin-user.update', $admin_user->id) }}"
                 method="POST">
-                @csrf
+                @csrf @method('PUT')
+                <input type="hidden" name="update" value="1">
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -16,7 +17,7 @@
                             <select class="form-select" name="role" required>
                                 <option selected disabled value="">Choose...</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                                    <option value="{{ $role->name }}" @selected( preg_replace(('/[^a-z ^\d]/'), '', $admin_user->getRoleNames()) ==  $role->name)>{{ ucfirst($role->name) }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('role'))
@@ -25,7 +26,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="name" class="form-label required">Name </label>
-                            <input type="search" name="name" class="form-control" value="{{ $user->name }}"
+                            <input type="search" name="name" class="form-control" value="{{ $admin_user->name }}"
                                 required />
                             @if ($errors->has('name'))
                                 <div class="alert alert-danger">{{ $errors->first('name') }}</div>
@@ -33,22 +34,21 @@
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label required">Email </label>
-                            <input type="email" name="email" class="form-control" value="{{ $user->email }}"
-                                required />
+                            <input type="email" name="email" class="form-control" value="{{ $admin_user->email }}"/>
                             @if ($errors->has('email'))
                                 <div class="alert alert-danger">{{ $errors->first('email') }}</div>
                             @endif
                         </div>
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Phone </label>
-                            <input type="search" name="phone" class="form-control" value="{{ $user->phone }}" />
+                            <input type="search" name="phone" class="form-control" value="{{ $admin_user->phone }}" />
                             @if ($errors->has('phone'))
                                 <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
                             @endif
                         </div>
                         <div class="col-md-6">
                             <label for="d_o_b" class="form-label">Date of Birth </label>
-                            <input type="date" name="d_o_b" class="form-control" value="{{ bdDate($user->d_o_b) }}" />
+                            <input type="date" name="d_o_b" class="form-control" value="{{ $admin_user->d_o_b }}" />
                             @if ($errors->has('d_o_b'))
                                 <div class="alert alert-danger">{{ $errors->first('d_o_b') }}</div>
                             @endif
@@ -62,13 +62,13 @@
                         </div>
                         <div class="col-md-12">
                             <label for="address" class="form-label">Address </label>
-                            <input type="search" name="address" class="form-control" value="{{ $user->address }}" />
+                            <input type="search" name="address" class="form-control" value="{{ $admin_user->address }}" />
                             @if ($errors->has('address'))
                                 <div class="alert alert-danger">{{ $errors->first('address') }}</div>
                             @endif
                         </div>
                         <div class="col-md-6">
-                            <label for="password" class="form-label required"> password</label>
+                            <label for="password" class="form-label"> password</label>
                             <input type="password" name="password" class="form-control" value=""
                                  />
                             @if ($errors->has('password'))
@@ -76,7 +76,7 @@
                             @endif
                         </div>
                         <div class="col-md-6">
-                            <label for="password_confirmation" class="form-label required">Password Confirmation
+                            <label for="password_confirmation" class="form-label">Password Confirmation
                             </label>
                             <input type="password" name="password_confirmation" class="form-control"
                                 value="{{ old('password_confirmation') }}" />

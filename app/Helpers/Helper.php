@@ -40,6 +40,28 @@ if (!function_exists('imageStore')) {
     }
 }
 
+if (!function_exists('imageUpdate')) {
+    function imageUpdate(Request $request, $request_name ,string $name, string $path, $image)
+    {
+        if($request->hasFile($request_name)){
+            $deletePath =  public_path($path.$image);
+            if(file_exists($deletePath) && $image != ''){
+                unlink($deletePath);
+            }
+            // file_exists($deletePath) ? unlink($deletePath) : false;
+            $createPath = public_path().$path;
+            !file_exists($createPath) ?? File::makeDirectory($createPath, 0777, true, true);
+
+            $image = $request->file($request_name);
+            $image_name = $name . uniqueId(20).'.'.$image->getClientOriginalExtension();
+            if ($image->isValid()) {
+                $request->image->move($path,$image_name);
+                return $image_name;
+            }
+        }
+    }
+}
+
 
 if (!function_exists('imagePath')) {
     function imagePath($folder, $image)
