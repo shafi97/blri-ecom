@@ -43,6 +43,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('dashboard')
                 ->as('admin.')
                 ->group(base_path('routes/admin.php'));
+
+            Route::prefix('/')
+                ->as('frontend.')
+                ->group(base_path('routes/frontend.php'));
         });
     }
 
