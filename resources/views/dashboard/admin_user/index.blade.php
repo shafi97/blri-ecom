@@ -18,16 +18,14 @@
                                     <ion-icon name="home-outline"></ion-icon>
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                Data Table
-                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Admin User</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
             <div class="d-flex justify-content-between index_title">
-                <h6 class="mb-0">DataTable Example</h6>
+                <h6 class="mb-0">Admin User List</h6>
                 <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add New</a>
             </div>
 

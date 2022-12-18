@@ -186,12 +186,7 @@ if (!function_exists('uniqueId')) {
         return substr(bin2hex($bytes), 0, $lenght);
     }
 }
-if (!function_exists('propic')) {
-    function propic($user)
-    {
-        return $user->profile_picture ? asset($user->profile_picture) : asset('assist/images/avatar.png');
-    }
-}
+
 if (!function_exists('user')) {
     function user()
     {
@@ -206,23 +201,6 @@ if (!function_exists('slug')) {
     }
 }
 
-if (!function_exists('word_limit')) {
-    function word_limit(string $string, int $limit = 8)
-    {
-        return Str::words(strip_tags($string), $limit);
-    }
-}
-
-if (!function_exists('userHasPrivilege')) {
-    function userHasPrivilege(array $permission)
-    {
-        if (AuthorizationChecker::canDo($permission)) {
-            return true;
-        }
-        return false;
-    }
-}
-
 if (!function_exists('bn_slug')) {
     function bn_slug($text)
     {
@@ -230,16 +208,6 @@ if (!function_exists('bn_slug')) {
         $slug = strtolower(str_replace($array, '', trim($text)));
         return str_replace(' ', '-', $slug);
         return strtolower(preg_replace('/\s+/u', '-', trim($text)));
-    }
-}
-
-if (!function_exists('make_slug')) {
-    function make_slug($string)
-    {
-        $slug = preg_replace('/\s+/u', '-', trim($string));
-        $slug = str_replace("/", "", $slug);
-        $slug = str_replace("?", "", $slug);
-        return mb_strtolower($slug, 'UTF-8');
     }
 }
 
@@ -253,7 +221,6 @@ if (!function_exists('readableSize')) {
         if (!is_numeric($n)) {
             return $n;
         }
-
         // now filter it;
         if ($n >= 1000000000000) {
             return round(($n / 1000000000000), 1) . ' T';
@@ -264,7 +231,6 @@ if (!function_exists('readableSize')) {
         } elseif ($n >= 1000) {
             return round(($n / 1000), 1) . ' K';
         }
-
         return number_format($n);
     }
 }
@@ -306,6 +272,34 @@ if (!function_exists('niceFileSize')) {
         }
         return $result;
     }
+
+    /**
+     * Converts a number to its roman presentation.
+     **/
+    if (!function_exists('numberToRoman')) {
+        function numberToRoman($num)
+        {
+            // Be sure to convert the given parameter into an integer
+            $n = intval($num);
+            $result = '';
+            // Declare a lookup array that we will use to traverse the number:
+            $lookup = array(
+                'M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400,
+                'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40,
+                'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1
+            );
+            foreach ($lookup as $roman => $value)
+            {
+                // Look for number of matches
+                $matches = intval($n / $value);
+                // Concatenate characters
+                $result .= str_repeat($roman, $matches);
+                // Substract that from the number
+                $n = $n % $value;
+            }
+            return $result;
+        }
+    };
 }
 
 

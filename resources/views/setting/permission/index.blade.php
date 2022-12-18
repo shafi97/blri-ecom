@@ -27,7 +27,7 @@
             </div>
             <!--end breadcrumb-->
             <div class="d-flex justify-content-between index_title">
-                <h6 class="mb-0">DataTable Example</h6>
+                <h6 class="mb-0">Permission List</h6>
 
                 @can('permission-add')
                     <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary"

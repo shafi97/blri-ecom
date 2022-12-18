@@ -1,5 +1,5 @@
 @extends('dashboard.layout.app')
-@section('title', '')
+@section('title', 'Dashboard')
 @section('content')
 <div class="page-content-wrapper">
     <!-- start page content-->

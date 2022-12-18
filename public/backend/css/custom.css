@@ -35,3 +35,17 @@
     pointer-events: none!important;
     cursor: default!important;
 }
+
+._btn {
+    border: none !important;
+    background: none;
+    font-size: 17px;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1px !important;
+}
+
+.footer {
+    text-align: center !important;
+}

@@ -32,6 +32,7 @@
     <link href="{{ asset('backend/css/semi-dark.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/css/header-colors.css') }}" rel="stylesheet" />
 
+    <title>@yield('title') | {{ env('APP_NAME') }}</title>
     {{-- <title>@yield('title') | {{ config('app.locale')=='en'?setting('app_name'):setting('app_name_b') }}</title> --}}
 </head>
 

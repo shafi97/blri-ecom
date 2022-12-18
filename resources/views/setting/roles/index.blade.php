@@ -19,17 +19,17 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Permission
+                                Role
                             </li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <div class="d-flex justify-content-between index_title">
-                <h6 class="mb-0">DataTable Example</h6>
+            <div class="d-flex index_title">
+                <h6 class="mb-0">Role List</h6>
                 @if (user()->id == 1)
-                    <a href="{{ route('admin.permission.index') }}" class="btn btn-primary" style="min-width: 200px">
+                    <a href="{{ route('admin.permission.index') }}" class="btn btn-primary ms-auto me-2" style="min-width: 200px">
                         <i class="fa fa-plus"></i> Manage Permission
                     </a>
                 @endif
