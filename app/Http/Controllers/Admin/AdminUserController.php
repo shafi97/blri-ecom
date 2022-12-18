@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserUpdateRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\AdminUserStoreRequest;
 use App\Http\Requests\AdminUserUpdateRequest;
@@ -119,7 +118,6 @@ class AdminUserController extends Controller
             return response()->json(['message'=>__('app.oops')], 500);
             // return response()->json(['message'=>$e->getMessage()], 500);
         }
-
     }
 
     public function destroy(User $admin_user)

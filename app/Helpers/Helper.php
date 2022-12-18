@@ -62,6 +62,16 @@ if (!function_exists('imageUpdate')) {
     }
 }
 
+if(!function_exists('profileImg')){
+    function profileImg(){
+        if(file_exists(asset('uploads/images/user/'.user()->image))){
+            return asset('uploads/images/user/'.user()->image);
+        }else{
+            return asset('uploads/images/user/profile_blank.png');
+        }
+    }
+}
+
 
 if (!function_exists('imagePath')) {
     function imagePath($folder, $image)
@@ -70,7 +80,7 @@ if (!function_exists('imagePath')) {
         if(@GetImageSize($path)){
             return asset($path);
         }else{
-            return setting('app_logo');
+            // return setting('app_logo');
         }
     }
 }
