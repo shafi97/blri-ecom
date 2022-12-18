@@ -25,6 +25,11 @@ class User extends Authenticatable
         'name',
         'email',
         'role',
+        'organization_name',
+        'division_id',
+        'district_id',
+        'upazila_id',
+        'union_id',
         'image',
         'phone',
         'address',
@@ -54,6 +59,4 @@ class User extends Authenticatable
     // protected $primaryKey = 'uuid';
     // protected $keyType = 'string';
     // public $incrementing = false;
-
-
 }
