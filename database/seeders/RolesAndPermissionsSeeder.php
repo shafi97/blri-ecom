@@ -72,6 +72,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'setting-manage',
                 'language-manage',
             ],
+            'category'=>[
+                'category-manage',
+                'category-add',
+                'category-edit',
+                'category-delete',
+            ],
 
         ];
         foreach ($pers as $per => $val) {

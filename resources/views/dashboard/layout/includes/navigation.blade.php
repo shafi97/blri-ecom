@@ -26,6 +26,26 @@
     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="menu-title">Category</div>
+        </a>
+        <ul>
+            <li>
+                <a href="{{ route('admin.category.index') }}">
+                    <ion-icon name="ellipse-outline"></ion-icon>Category
+                </a>
+            </li>
+            <li class="{{ activeNav('admin.admin-user.*') }}">
+                <a href="{{ route('admin.admin-user.index') }}">
+                    <ion-icon name="ellipse-outline"></ion-icon>Sub Category
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon">
                 <ion-icon name="bag-handle-sharp"></ion-icon>
             </div>
             <div class="menu-title">Blank</div>

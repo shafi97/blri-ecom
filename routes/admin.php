@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Admin\BlankController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Setting\AppDbBackupController;
@@ -15,14 +16,14 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
 // Global Ajax
-Route::delete('delete-all/{model}', [AjaxController::class, 'deleteAll'])->name('delete_all');
-Route::delete('force-delete-all/{model}', [AjaxController::class, 'forceDeleteAll'])->name('force_delete_all');
-Route::get('select-2-ajax/{model}', [AjaxController::class, 'select2'])->name('select2');
+Route::delete('/delete-all/{model}', [AjaxController::class, 'deleteAll'])->name('delete_all');
+Route::delete('/force-delete-all/{model}', [AjaxController::class, 'forceDeleteAll'])->name('force_delete_all');
+Route::get('/select-2-ajax/{model}', [AjaxController::class, 'select2'])->name('select2');
 
 // Role & Permission
-Route::post('role/permission/{role}', [RoleController::class, 'assignPermission'])->name('role.permission');
-Route::resource('role', RoleController::class);
-Route::resource('permission', PermissionController::class);
+Route::post('/role/permission/{role}', [RoleController::class, 'assignPermission'])->name('role.permission');
+Route::resource('/role', RoleController::class);
+Route::resource('/permission', PermissionController::class);
 
 // App DB Backup
 Route::controller(AppDbBackupController::class)->prefix('app-db-backup')->group(function(){
@@ -40,4 +41,6 @@ Route::resource('/admin-user', AdminUserController::class,[
         'admin-user' => 'admin_user'
     ]
 ]);
+
+Route::resource('/category', CategoryController::class)->except(['show','create']);
 
