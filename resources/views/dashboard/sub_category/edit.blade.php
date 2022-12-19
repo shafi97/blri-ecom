@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Admin User</h5>
+                <h5 class="modal-title">Add Sub Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.sub-category.update', $sub_category->uuid) }}"

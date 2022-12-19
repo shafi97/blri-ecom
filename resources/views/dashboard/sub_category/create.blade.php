@@ -2,8 +2,7 @@
 <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Admin User</h5>
+            <div class="modal-header">Sub Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form onsubmit="ajaxStore(event, this, 'createModal')" action="{{ route('admin.sub-category.store') }}"
@@ -24,7 +23,7 @@
                             @endif
                         </div>
                         <div class="col-md-6">
-                            <label for="name" class="form-label required">Name </label>
+                            <label for="name" class="form-label required">Sub Category Name </label>
                             <input type="search" name="name" class="form-control" value="{{ old('name') }}"
                                 required />
                             @if ($errors->has('name'))
