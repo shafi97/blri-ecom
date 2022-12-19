@@ -36,8 +36,8 @@
                     <ion-icon name="ellipse-outline"></ion-icon>Category
                 </a>
             </li>
-            <li class="{{ activeNav('admin.admin-user.*') }}">
-                <a href="{{ route('admin.admin-user.index') }}">
+            <li>
+                <a href="{{ route('admin.sub-category.index') }}">
                     <ion-icon name="ellipse-outline"></ion-icon>Sub Category
                 </a>
             </li>

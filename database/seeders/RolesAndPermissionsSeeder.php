@@ -78,6 +78,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'category-edit',
                 'category-delete',
             ],
+            'sub-category'=>[
+                'sub-category-manage',
+                'sub-category-add',
+                'sub-category-edit',
+                'sub-category-delete',
+            ],
 
         ];
         foreach ($pers as $per => $val) {

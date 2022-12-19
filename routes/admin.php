@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlankController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Setting\AppDbBackupController;
 use App\Http\Controllers\Setting\Permission\RoleController;
 use App\Http\Controllers\Setting\Permission\PermissionController;
@@ -36,11 +37,7 @@ Route::controller(AppDbBackupController::class)->prefix('app-db-backup')->group(
     Route::post('/backup-delete/{name}/{ext}', 'deleteBackup')->name('backup.delete');
 });
 
-Route::resource('/admin-user', AdminUserController::class,[
-    'parameters' => [
-        'admin-user' => 'admin_user'
-    ]
-]);
+Route::resource('/admin-user', AdminUserController::class,['parameters' => ['admin-user' => 'admin_user']])->except(['show','create']);
 
 Route::resource('/category', CategoryController::class)->except(['show','create']);
-
+Route::resource('/sub-category', SubCategoryController::class,['parameters' => ['sub-category' => 'sub_category']])->except(['show','create']);

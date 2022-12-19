@@ -2,56 +2,58 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Promise\Create;
+use App\Models\Category;
 use Yajra\DataTables\Facades\DataTables;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     public function index(Request $request)
     {
-        if ($error = $this->authorize('category-manage')) {
+        if ($error = $this->authorize('sub-category-manage')) {
             return $error;
         }
         if ($request->ajax()) {
-            $category = Category::query();
-            return DataTables::of($category)
+            $sub_category = SubCategory::with('category');
+            return DataTables::of($sub_category)
                 ->addIndexColumn()
-                ->addColumn('check', function ($row) {
-                    return '<input type="checkbox" name="select[]" onclick="checkcheckbox()" id="check_'.$row->uuid.'" class="check" value="'.$row->uuid.'">';
+                ->addColumn('category_name', function ($row) {
+                    return $row->category->name;
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->diffForHumans();
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '';
-                    if (userCan('category-edit')) {
+                    if (userCan('sub-category-edit')) {
                         $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.category.edit', $row->uuid) , 'row' => $row]);
                     }
-                    if (userCan('category-delete')) {
+                    if (userCan('sub-category-delete')) {
                         $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.category.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
-                ->rawColumns(['check', 'action', 'created_at'])
+                ->rawColumns(['category_name','action', 'created_at'])
                 ->make(true);
         }
-        return view('dashboard.category.index');
+        $categories = Category::get(['uuid','name']);
+        return view('dashboard.sub_category.index', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        if ($error = $this->authorize('category-add')) {
+        if ($error = $this->authorize('sub-category-add')) {
             return $error;
         }
         $data = $request->validate([
-            'name' =>'required|unique:categories,name|string|max:191',
+            'category_uuid' =>'required|uuid',
+            'name' =>'required|unique:sub_categories,name|string|max:191',
         ]);
 
         try {
-            Category::create($data);
+            SubCategory::create($data);
             return response()->json(['message'=> __('app.success-message')], 200);
         } catch (\Exception $e) {
             return response()->json(['message'=>__('app.oops')], 500);
@@ -59,13 +61,13 @@ class CategoryController extends Controller
         }
     }
 
-    public function edit(Request $request, Category $category)
+    public function edit(Request $request, SubCategory $sub_category)
     {
         if ($error = $this->authorize('category-edit')) {
             return $error;
         }
         if ($request->ajax()) {
-            $modal = view('dashboard.category.edit')->with(['category' => $category])->render();
+            $modal = view('dashboard.sub_category.edit')->with(['sub_category' => $sub_category])->render();
             return response()->json(['modal' => $modal], 200);
         }
         return abort(500);

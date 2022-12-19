@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory, SoftDeletes, HasUuid;
     protected $guarded = ["uuid"];
@@ -15,4 +15,9 @@ class Category extends Model
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_uuid','uuid');
+    }
 }
