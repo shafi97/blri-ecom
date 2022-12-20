@@ -6,7 +6,7 @@
                 <h5 class="modal-title">Add Admin User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.admin-user.update', $admin_user->id) }}"
+            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.admin-user.update', $admin_user->uuid) }}"
                 method="POST">
                 @csrf @method('PUT')
                 <input type="hidden" name="update" value="1">
@@ -17,7 +17,7 @@
                             <select class="form-select" name="role" required>
                                 <option selected disabled value="">Choose...</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->name }}" @selected( preg_replace(('/[^a-z ^\d]/'), '', $admin_user->getRoleNames()) ==  $role->name)>{{ ucfirst($role->name) }}</option>
+                                    <option value="{{ $role->name }}" @selected(preg_replace(('/[^a-z ^\d]/'), '', $admin_user->getRoleNames()) ==  $role->name)>{{ ucfirst($role->name) }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('role'))

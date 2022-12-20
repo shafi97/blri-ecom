@@ -13,13 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sub_categories', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
             $table->string('user_uuid')->index();
             $table->foreign('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
             $table->string('category_uuid')->index();
             $table->foreign('category_uuid')->references('uuid')->on('categories')->onDelete('cascade');
-            $table->string('name',191)->unique();
+            $table->string('sub_category_uuid')->index();
+            $table->foreign('sub_category_uuid')->references('uuid')->on('sub_categories')->onDelete('cascade');
+            $table->tinyInteger('type')->comment('1=in stock, 2=sale');
+            $table->string('name',255);
+            $table->string('weight',32)->nullable();
+            $table->date('d_o_b')->nullable();
+            $table->string('size',191)->nullable();
+            $table->string('color',191)->nullable();
+            $table->decimal('price',14,2)->nullable();
+            $table->decimal('discount',14,2)->nullable();
+            $table->string('product_code',191)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_categories');
+        Schema::dropIfExists('products');
     }
 };

@@ -37,10 +37,10 @@ class AdminUserController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '';
                     if (userCan('admin-user-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.admin-user.edit', $row->id) , 'row' => $row]);
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.admin-user.edit', $row->uuid) , 'row' => $row]);
                     }
                     if (userCan('admin-user-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.admin-user.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.admin-user.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
