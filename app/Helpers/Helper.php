@@ -101,6 +101,7 @@ if (!function_exists('transaction_id')) {
         return strtoupper(substr(bin2hex($bytes), 0, $length));
     }
 }
+
 if (!function_exists('activeSubNav')) {
     function activeSubNav($route)
     {

@@ -16,7 +16,9 @@ class SubCategoryController extends Controller
             return $error;
         }
         if ($request->ajax()) {
-            $sub_category = SubCategory::with('category');
+            user()->role == 1 ?
+            $sub_category = SubCategory::with('category')->orderBy('name') :
+            $sub_category = SubCategory::with('category')->whereUser_uuid(user()->uuid)->orderBy('name');
             return DataTables::of($sub_category)
                 ->addIndexColumn()
                 ->addColumn('category_name', function ($row) {
@@ -38,7 +40,8 @@ class SubCategoryController extends Controller
                 ->rawColumns(['category_name','action', 'created_at'])
                 ->make(true);
         }
-        $categories = Category::get(['uuid','name']);
+        user()->role == 1 ? $categories = Category::orderBy('name')->get(['uuid','name']) :
+        $categories = Category::whereUser_uuid(user()->uuid)->orderBy('name')->get(['uuid','name']);
         return view('dashboard.sub_category.index', compact('categories'));
     }
 
@@ -51,6 +54,7 @@ class SubCategoryController extends Controller
             'category_uuid' =>'required|uuid',
             'name' =>'required|unique:sub_categories,name|string|max:191',
         ]);
+        $data['user_uuid'] = user()->uuid;
 
         try {
             SubCategory::create($data);

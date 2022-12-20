@@ -16,7 +16,8 @@ class CategoryController extends Controller
             return $error;
         }
         if ($request->ajax()) {
-            $category = Category::query();
+                user()->role == 1 ? $category = Category::orderBy('name') :
+                $category = Category::whereUser_uuid(user()->uuid)->orderBy('name');
             return DataTables::of($category)
                 ->addIndexColumn()
                 ->addColumn('check', function ($row) {
@@ -49,6 +50,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' =>'required|unique:categories,name|string|max:191',
         ]);
+        $data['user_uuid'] = user()->uuid;
 
         try {
             Category::create($data);

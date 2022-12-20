@@ -43,6 +43,16 @@
             </li>
         </ul>
     </li>
+    {{-- Product --}}
+    <li>
+        <a href="{{ route('admin.product.index') }}">
+            <div class="parent-icon">
+                <ion-icon name="document-text-sharp"></ion-icon>
+            </div>
+            <div class="menu-title">Product</div>
+        </a>
+    </li>
+
     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon">
@@ -63,6 +73,8 @@
             </li>
         </ul>
     </li>
+
+
 
     {{-- settings --}}
     <li class="menu-label">settings</li>

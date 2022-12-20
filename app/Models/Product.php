@@ -15,4 +15,13 @@ class Product extends Model
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_uuid','uuid');
+    }
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_uuid','uuid');
+    }
 }
