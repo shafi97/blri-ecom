@@ -4,20 +4,14 @@ namespace App\Models;
 
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class ProductFile extends Model
 {
-    use HasFactory, SoftDeletes, HasUuid;
+    use HasFactory, HasUuid;
     protected $guarded = ["uuid"];
 
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
-
-    public function subCategories()
-    {
-        return $this->hasMany(SubCategory::class, 'category_uuid', 'uuid');
-    }
 }

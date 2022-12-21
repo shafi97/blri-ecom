@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductFile;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -72,9 +73,26 @@ class ProductController extends Controller
         $data['type'] = 1;
         $data['tran_id'] = transaction_id("INS");// In stock
         $data['weight'] = $request->weight.' '.$request->weight_unit;
+        $product = Product::create($data);
+        // dd($request->file_name);
+        $files = $request->file('file_file');
+        foreach ($files as  $k => $v){
+            // if ($v) {
+                $extension = $v->getClientOriginalExtension();
+                $fileName = "product_".rand(0, 100000).".".$extension;
+                $destinationPath = 'uploads/images/product'.'/';
+                $v->move($destinationPath, $fileName);
+
+                $file_data['product_uuid'] = $product->uuid;
+                $file_data['type']         = $request->file_type[$k];
+                $file_data['file']         = $fileName;
+                $file_data['title']        = $request->file_title[$k];
+                ProductFile::create($file_data);
+            // }
+        }
 
         try {
-            Product::create($data);
+
             return response()->json(['message'=> __('app.success-message')], 200);
         } catch (\Exception $e) {
             // return response()->json(['message'=>__('app.oops')], 500);

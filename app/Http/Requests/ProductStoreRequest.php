@@ -24,7 +24,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|string|max:255',
+            'name'              => 'required|max:255',
             'category_uuid'     => 'required|uuid',
             'sub_category_uuid' => 'nullable|uuid',
             'weight'            => 'required|string|max:32',

@@ -66,6 +66,30 @@
     @push('custom_scripts')
     @include('dashboard.layout.includes.data_table_js')
     <script>
+        $(document).ready(function(){
+            var i         = 1;
+            $('.addrow').click(function()
+            {
+                let type      = $('#type').val();
+                let type_text = $('#type option:selected').text();
+                let name      = $('#name').val();
+                i++;
+                html ='';
+                html +='<tr id="remove_'+i+'" class="post_item">';
+                html +='    <td><select name="file_type[]" class="form-control form-control-sm"><option value="">Choose...</option><option value="1">Image</option><option value="2">Video</option><option value="3">Youtube Link</option></select></td>';
+                html +='    <td><input type="file" name="file_file[]" multiple id="document_1" class="form-control form-control-sm"/></td>';
+                html +='    <td><input type="search" name="file_title[]" class="form-control form-control-sm"/></td>';
+                html +='	<td style="width: 20px"  class="col-md-2"><span class="btn btn-sm btn-danger" onclick="return remove('+i+')"><i class="fa fa-times" aria-hidden="true"></i></span></td>';
+                html +='</tr>';
+                $('#showItem').append(html);
+            });
+        });
+        function remove(id)
+        {
+            $('#remove_'+id).remove();
+            total_price();
+        }
+
         $(function() {
             $('#data_table').DataTable({
                 processing: true,
@@ -139,7 +163,7 @@
             });
         });
 
-        $('#category_uuid').change(function () {
+    $('#category_uuid').change(function () {
         $.ajax({
             url:'{{route("admin.getSubCategory")}}',
             method:'get',
@@ -152,7 +176,9 @@
                 }
             }
         });
-     })
+    })
+
+
     </script>
     @endpush
 @endsection

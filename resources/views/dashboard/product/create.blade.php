@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form onsubmit="ajaxStore(event, this, 'createModal')" action="{{ route('admin.product.store') }}"
-                method="POST">
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row g-3">
@@ -133,6 +133,28 @@
                                 <div class="alert alert-danger">{{ $errors->first('description') }}</div>
                             @endif
                         </div>
+
+                        {{-- File --}}
+                        <div class="row col-md-12"><h3 style="margin-left: 8px; font-weight:bold">Documents</h3></div>
+                        <table class=" table-bordered">
+                            {{-- <h2>Documents</h2> --}}
+                            <tr>
+                                <th>File Type</th>
+                                <th>File</th>
+                                <th>Title</th>
+                                <th style="width: 20px;text-align:center;">
+                                    <a class="text-primary" style="font-size: 16px"><i class="fas fa-mouse"></i></a>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td><select name="file_type[]" class="form-control form-control-sm"><option value="">Choose...</option><option value="1">Image</option><option value="2">Video</option><option value="3">Youtube Link</option></select></td>
+                                <td><input type="file" name="file_file[]" multiple class="form-control form-control-sm"/></td>
+                                <td><input type="search" name="file_title[]" class="form-control form-control-sm"/></td>
+                                <td style="width: 20px"><span class="btn btn-sm btn-success addrow"><i class="fa fa-plus" aria-hidden="true"></i></span></td>
+                            </tr>
+                            <tbody id="showItem"></tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">
