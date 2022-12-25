@@ -51,7 +51,7 @@
         </div>
         <!-- end page content-->
     </div>
-    @can('admin-user-add')
+    @can('sub-category-add')
         @include('dashboard.sub_category.create')
     @endcan
     @push('custom_scripts')

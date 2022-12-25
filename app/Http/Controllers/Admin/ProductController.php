@@ -19,15 +19,18 @@ class ProductController extends Controller
             return $error;
         }
         if ($request->ajax()) {
-            user()->role == 1 ? $products = Product::with(['category','subCategory'])->orderBy('name') :
+            user()->role == 1 ? $products = Product::with(['category','subCategory','file'])->orderBy('name') :
             $products = Product::whereUser_uuid(user()->uuid)->orderBy('name');
             return DataTables::of($products)
                 ->addIndexColumn()
+                ->addColumn('image', function ($row) {
+                    return '<img src="'.imagePath('product', $row->file->file).'" width="100px" height="100px">';
+                })
                 ->addColumn('category_name', function ($row) {
                     return $row->category->name;
                 })
                 ->addColumn('sub_category_name', function ($row) {
-                    return $row->category->name;
+                    return $row->subCategory->name;
                 })
                 ->addColumn('age', function ($row) {
                     return ageWithDays($row->d_o_b);
@@ -45,7 +48,7 @@ class ProductController extends Controller
                     }
                     return $btn;
                 })
-                ->rawColumns(['category_name','sub_category_name','age','action', 'created_at'])
+                ->rawColumns(['image','category_name','sub_category_name','age','action', 'created_at'])
                 ->make(true);
         }
         if(user()->role == 1){

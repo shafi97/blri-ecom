@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Admin\BlankController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -44,3 +45,4 @@ Route::resource('/category', CategoryController::class)->except(['show','create'
 Route::resource('/sub-category', SubCategoryController::class,['parameters' => ['sub-category' => 'sub_category']])->except(['show','create']);
 Route::resource('/product', ProductController::class)->except(['show','create']);
 Route::get('/get-Sub-category', [ProductController::class, 'getSubCategory'])->name('getSubCategory');
+Route::resource('/slider', SliderController::class)->except(['show','create']);

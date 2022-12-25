@@ -41,6 +41,7 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/reset.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 
 
 
@@ -107,5 +108,6 @@
 	<script src="{{ asset('frontend/js/easing.js') }}"></script>
 	<!-- Active JS -->
 	<script src="{{ asset('frontend/js/active.js') }}"></script>
+    @stack('custom_scripts')
 </body>
 </html>

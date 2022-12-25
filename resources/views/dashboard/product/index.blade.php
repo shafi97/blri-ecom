@@ -48,6 +48,7 @@
                                     <th>Discount</th>
                                     <th>Product Code</th>
                                     <th>Description</th>
+                                    <th>Image</th>
                                     <th class="no-sort" width="60px">Action</th>
                                 </tr>
                             </thead>
@@ -60,7 +61,7 @@
         </div>
         <!-- end page content-->
     </div>
-    @can('admin-user-add')
+    @can('product-add')
         @include('dashboard.product.create')
     @endcan
     @push('custom_scripts')
@@ -149,6 +150,10 @@
                     {
                         data: 'description',
                         name: 'description'
+                    },
+                    {
+                        data: 'image',
+                        name: 'image'
                     },
                     {
                         data: 'action',

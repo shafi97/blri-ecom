@@ -50,7 +50,7 @@
         </div>
         <!-- end page content-->
     </div>
-    @can('admin-user-add')
+    @can('category-add')
         @include('dashboard.category.create')
     @endcan
     @push('custom_scripts')

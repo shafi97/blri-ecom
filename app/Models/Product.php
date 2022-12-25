@@ -6,6 +6,8 @@ use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -20,8 +22,18 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_uuid','uuid');
     }
+
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_uuid','uuid');
+    }
+
+    public function file(): hasOne
+    {
+        return $this->hasOne(ProductFile::class, 'product_uuid','uuid')->withDefault();
+    }
+    public function files()
+    {
+        return $this->belongsToMany(ProductFile::class, 'product_uuid','uuid');
     }
 }

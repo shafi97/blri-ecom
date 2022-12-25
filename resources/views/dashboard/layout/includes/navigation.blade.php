@@ -23,10 +23,19 @@
             </li>
         </ul>
     </li>
+    {{-- Slider --}}
+    <li>
+        <a href="{{ route('admin.slider.index') }}">
+            <div class="parent-icon">
+                <i class="fa-regular fa-images"></i>
+            </div>
+            <div class="menu-title">Slider</div>
+        </a>
+    </li>
     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon">
-                <i class="fa-solid fa-user-shield"></i>
+                <i class="fa-solid fa-list-ul"></i>
             </div>
             <div class="menu-title">Category</div>
         </a>
