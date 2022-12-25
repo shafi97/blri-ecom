@@ -101,7 +101,10 @@
                                         {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
                                     </div>
                                     <div class="product-action-2">
-                                        <a title="Add to cart" href="#">Add to cart</a>
+                                        <form onsubmit="cart(event,'{{ $product->uuid }}')">
+                                            @csrf
+                                            <button type="submit">Add to cart </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -616,49 +619,68 @@
 	</section>
 	<!-- End Shop Newsletter -->
 
-	<!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row no-gutters">
-							<div class="col-lg-6 offset-lg-3 col-12">
-								<h4 style="margin-top:100px;font-size:14px; font-weight:500; color:#F7941D; display:block; margin-bottom:5px;">Eshop Free Lite</h4>
-								<h3 style="font-size:30px;color:#333;">Currently You are using free lite Version of Eshop.<h3>
-								<p style="display:block; margin-top:20px; color:#888; font-size:14px; font-weight:400;">Please, purchase full version of the template to get all pages, features and commercial license</p>
-								<div class="button" style="margin-top:30px;">
-									<a href="https://wpthemesgrid.com/downloads/eshop-ecommerce-html5-template/" target="_blank" class="btn" style="color:#fff;">Buy Now!</a>
-								</div>
-							</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-    <!-- Modal end -->
-
-
-
     @push('custom_scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script>
         $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:true,
-        // lazyLoad: true,
-        lazyLoadEager: true,
-        autoplay: true,
-        dots: true,
+            loop:true,
+            margin:10,
+            nav:false,
+            lazyLoadEager: true,
+            autoplay: true,
+            dots: true,
+            slideBy: 1,
+            items: 1,
+        })
 
-        slideBy: 1,
-		items: 1,
+        $(document).ready(function(){
+            cartShow()
+        })
 
-    })
-    $(".owl-prev").removeAttr("style");
+        function cart(e, product_id){
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route("frontend.cart.store") }}',
+                type: 'POST',
+                data: {
+                    'product_id': product_id,
+                },
+                success: res => {
+                    cartShow()
+                    toast('success',res.message)
+                },
+                error: err => {
+                }
+            });
+        }
+        function cartDelete(e, cart_id){
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route("frontend.cart.destroy") }}',
+                type: 'delete',
+                data: {
+                    uuid: cart_id,
+                },
+                success: res => {
+                    cartShow()
+                    toast('success',res.message)
+                },
+                error: err => {
+                }
+            });
+        }
+        function cartShow(){
+            $.ajax({
+                url:'{{route("frontend.cart.show")}}',
+                method:'get',
+                success: function (res) {
+                    if (res.status == 'success') {
+                        $('#cart').html(res.html);
+                    }
+                }
+            });
+        }
+
     </script>
    @endpush
 @endsection

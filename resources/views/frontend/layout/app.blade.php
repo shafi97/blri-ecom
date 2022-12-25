@@ -7,6 +7,7 @@
 	<meta name='copyright' content=''>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	{{-- <!-- Title Tag  --> --}}
     <title>Eshop - eCommerce HTML5 Template.</title>
 	{{-- <!-- Favicon --> --}}
@@ -37,6 +38,7 @@
 	{{-- <!-- Slicknav --> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}">
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" >
 	{{-- <!-- Eshop StyleSheet --> --}}
 	<link rel="stylesheet" href="{{ asset('frontend/css/reset.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
@@ -108,6 +110,31 @@
 	<script src="{{ asset('frontend/js/easing.js') }}"></script>
 	<!-- Active JS -->
 	<script src="{{ asset('frontend/js/active.js') }}"></script>
+    <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        function toast(status,header,msg) {
+            Command: toastr[status](header, msg)
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
+    </script>
     @stack('custom_scripts')
+
 </body>
 </html>

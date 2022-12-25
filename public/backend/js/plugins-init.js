@@ -252,7 +252,8 @@ function ajaxStore(e, form, modal) {
             });
         }
     });
-}function ajaxStore(e, form, modal) {
+}
+function ajaxStore(e, form, modal) {
     e.preventDefault();
     // let formData = $(form).serialize();
     let formData = new FormData(form);
