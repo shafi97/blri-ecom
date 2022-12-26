@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             // Route::middleware(['web','auth','permission:access-dashboard','verified'])
-            Route::middleware(['web','auth'])
+            Route::middleware(['web','auth','admin'])
                 ->prefix('dashboard')
                 ->as('admin.')
                 ->group(base_path('routes/admin.php'));

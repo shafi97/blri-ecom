@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
@@ -38,6 +40,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
