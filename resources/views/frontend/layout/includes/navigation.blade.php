@@ -1,5 +1,5 @@
 @php
-    $categories = App\Models\Category::with('subCategories')->get(['uuid','name'])
+    $categories = App\Models\Category::with('subCategories')->orderBy('name')->get(['uuid','name'])
 @endphp
 <div class="header-inner">
     <div class="container">
@@ -11,7 +11,7 @@
                         <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                         <ul class="main-category">
                             @foreach ($categories as $category)
-                            <li><a href="#">{{ $category->name }}
+                            <li><a href="{{ route('productByCat', $category->uuid) }}">{{ $category->name }}
                                 @if ($category->subCategories->count() > 0)
                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                 @endif
@@ -19,7 +19,7 @@
                             @if ($category->subCategories->count() > 0)
                                 <ul class="sub-category">
                                     @foreach ($category->subCategories as $subCategory)
-                                    <li><a href="#">{{ $subCategory->name }}</a></li>
+                                    <li><a href="{{ route('productBySubCat', $subCategory->uuid) }}">{{ $subCategory->name }}</a></li>
                                     @endforeach
 
                                 </ul>

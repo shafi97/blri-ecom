@@ -18,6 +18,6 @@ class Category extends Model
 
     public function subCategories()
     {
-        return $this->hasMany(SubCategory::class, 'category_uuid', 'uuid');
+        return $this->hasMany(SubCategory::class, 'category_uuid', 'uuid')->orderBy('name');
     }
 }
