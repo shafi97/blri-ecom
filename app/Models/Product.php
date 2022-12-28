@@ -34,6 +34,6 @@ class Product extends Model
     }
     public function files()
     {
-        return $this->belongsToMany(ProductFile::class, 'product_uuid','uuid');
+        return $this->hasMany(ProductFile::class, 'product_uuid','uuid');
     }
 }

@@ -21,7 +21,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'id',
         'name',
         'email',
         'role',
@@ -59,4 +58,17 @@ class User extends Authenticatable
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id', 'id')->withDefault();
+    }
+    public function upazila()
+    {
+        return $this->belongsTo(Upazila::class, 'upazila_id', 'id')->withDefault();
+    }
+    public function union()
+    {
+        return $this->belongsTo(Union::class, 'union_id', 'id')->withDefault();
+    }
 }

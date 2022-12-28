@@ -5,7 +5,7 @@
             <div class="modal-header">Add Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form onsubmit="ajaxStore(event, this, 'createModal')" action="{{ route('admin.product.store') }}"
+            <form onsubmit="ajaxStorePage(event, this, 'createModal')" action="{{ route('admin.product.store') }}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -135,7 +135,7 @@
                         </div>
 
                         {{-- File --}}
-                        <div class="row col-md-12"><h3 style="margin-left: 8px; font-weight:bold">Documents</h3></div>
+                        <div class="row col-md-12"><h5 style="margin-left: 0px;">Documents</h5></div>
                         <table class=" table-bordered">
                             {{-- <h2>Documents</h2> --}}
                             <tr>

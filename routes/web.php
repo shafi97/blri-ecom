@@ -21,6 +21,7 @@ Route::get('/frontend/logout', [AuthController::class, 'logout'])->name('fronten
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::controller(ProductController::class)->prefix('product')->group(function(){
+    Route::get('/show/{product_uuid}', 'show')->name('product.show');
     Route::get('/by-category/{cat_uuid}', 'productByCat')->name('productByCat');
     Route::get('/by-sub-category/{sub_cat_uuid}', 'productBySubCat')->name('productBySubCat');
 });

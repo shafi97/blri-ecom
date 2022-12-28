@@ -13,6 +13,6 @@ class AuthController extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect()->route('frontend.index');
+        return redirect()->route('index');
     }
 }

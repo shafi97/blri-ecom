@@ -13,6 +13,7 @@ class IndexController extends Controller
     {
         $sliders = Slider::all();
         $products = Product::with(['file'])->get();
-        return view('frontend.index', compact('sliders','products'));
+        $discountProducts = Product::with(['file'])->whereNotNull('discount')->orderBy('discount', 'DESC')->get();
+        return view('frontend.index', compact('sliders','products','discountProducts'));
     }
 }

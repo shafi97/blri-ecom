@@ -28,7 +28,7 @@
                                         </li>
                                     @endauth
                                     @guest
-                                        <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">Login</a></li>
+                                        <li><a href="javascript:;" data-toggle="modal" data-target="#loginModal">Login</a></li>
                                     @endguest
                                 </ul>
                             </div>

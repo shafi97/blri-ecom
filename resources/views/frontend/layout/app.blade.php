@@ -87,12 +87,12 @@
 
     <!-- Login Modal -->
     <div style="max-width: 50%">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     {{-- <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="loginModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -232,20 +232,36 @@
         }
 
         function cartDelete(e, cart_id) {
-                e.preventDefault();
-                $.ajax({
-                    url: '{{ route('frontend.cart.destroy') }}',
-                    type: 'delete',
-                    data: {
-                        uuid: cart_id,
-                    },
-                    success: res => {
-                        cartShow()
-                        toast('success', res.message)
-                    },
-                    error: err => {}
-                });
-            }
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('frontend.cart.destroy') }}',
+                type: 'delete',
+                data: {
+                    uuid: cart_id,
+                },
+                success: res => {
+                    cartShow()
+                    toast('success', res.message)
+                },
+                error: err => {}
+            });
+        }
+
+        function cart(e, product_id) {
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('frontend.cart.store') }}',
+                type: 'POST',
+                data: {
+                    'product_id': product_id,
+                },
+                success: res => {
+                    cartShow()
+                    toast('success', res.message)
+                },
+                error: err => {}
+            });
+        }
     </script>
 </body>
 

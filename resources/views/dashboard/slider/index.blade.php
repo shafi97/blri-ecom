@@ -1,9 +1,9 @@
 @extends('dashboard.layout.app')
 @section('title', 'Slider')
 @section('content')
-@push('custom_css')
-@include('dashboard.layout.includes.data_table_css')
-@endpush
+    @push('custom_css')
+        @include('dashboard.layout.includes.data_table_css')
+    @endpush
     <!-- start page content wrapper-->
     <div class="page-content-wrapper">
         <!-- start page content-->
@@ -26,7 +26,8 @@
             <!--end breadcrumb-->
             <div class="d-flex justify-content-between index_title">
                 <h6 class="mb-0">Slider List</h6>
-                <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add New</a>
+                <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add
+                    New</a>
             </div>
 
             <hr />
@@ -55,88 +56,87 @@
         @include('dashboard.slider.create')
     @endcan
     @push('custom_scripts')
-    @include('dashboard.layout.includes.data_table_js')
-    <script>
-        $(function() {
-            $('#data_table').DataTable({
-                processing: true,
-                serverSide: true,
-                deferRender: true,
-                ordering: true,
-                responsive: true,
-                scrollY: 400,
-                ajax: "{{ route('admin.slider.index') }}",
-                columns: [
-                    // {
-                    //     data: 'check',
-                    //     name: 'check',
-                    //     orderable: false,
-                    //     searchable: false
-                    // },
-                    {
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        searchable: false,
-                        orderable: false,
-                    },
-                    {
-                        data: 'text',
-                        name: 'text'
-                    },
-                    {
-                        data: 'image',
-                        name: 'image'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ],
-                scroller: {
-                    loadingIndicator: true
-                }
+        @include('dashboard.layout.includes.data_table_js')
+        <script>
+            $(function() {
+                $('#data_table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    deferRender: true,
+                    ordering: true,
+                    responsive: true,
+                    scrollY: 400,
+                    ajax: "{{ route('admin.slider.index') }}",
+                    columns: [
+                        // {
+                        //     data: 'check',
+                        //     name: 'check',
+                        //     orderable: false,
+                        //     searchable: false
+                        // },
+                        {
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            searchable: false,
+                            orderable: false,
+                        },
+                        {
+                            data: 'text',
+                            name: 'text'
+                        },
+                        {
+                            data: 'image',
+                            name: 'image'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ],
+                    scroller: {
+                        loadingIndicator: true
+                    }
+                });
             });
-        });
-    </script>
-    <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace( 'text');
-
-        function ajaxStorePage(e, form, modal) {
-    e.preventDefault();
-    CKEDITOR.instances['text'].updateElement();
-    // let formData = $(form).serialize();
-    let formData = new FormData(form);
-    $.ajax({
-        url: $(form).attr('action'),
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: res => {
-            swal({
-                icon: 'success',
-                title: 'Success',
-                text: res.message
-            }).then((confirm) => {
-                if (confirm) {
-                    $('.table').DataTable().ajax.reload();
-                    $("#" + modal).modal('hide');
-                    $(form).trigger("reset");
-                }
-            });
-        },
-        error: err => {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: err.responseJSON.message
-            });
-        }
-    });
-}
-    </script>
+        </script>
+        <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
+        <script>
+            CKEDITOR.replace('text');
+            function ajaxStorePage(e, form, modal) {
+                e.preventDefault();
+                CKEDITOR.instances['text'].updateElement();
+                // let formData = $(form).serialize();
+                let formData = new FormData(form);
+                $.ajax({
+                    url: $(form).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: res => {
+                        swal({
+                            icon: 'success',
+                            title: 'Success',
+                            text: res.message
+                        }).then((confirm) => {
+                            if (confirm) {
+                                $('.table').DataTable().ajax.reload();
+                                $("#" + modal).modal('hide');
+                                $(form).trigger("reset");
+                            }
+                        });
+                    },
+                    error: err => {
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: err.responseJSON.message
+                        });
+                    }
+                });
+            }
+        </script>
     @endpush
 @endsection

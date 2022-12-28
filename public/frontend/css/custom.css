@@ -1,15 +1,13 @@
-._top_menu{
-    text-align: center
-
+._top_menu {
+    text-align: center;
 }
-.right-content{
+.right-content {
     display: inline-block;
     width: 200px;
     margin: auto !important;
-    text-align: center
-
+    text-align: center;
 }
-.top_menu ul{
+.top_menu ul {
     position: relative;
     overflow: visible;
     z-index: 999999999999999999999999999;
@@ -23,23 +21,23 @@
     visibility: hidden;
     opacity: 0;
     background: white;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
-.top_menu ul li ul li{
+.top_menu ul li ul li {
     text-align: left;
     padding: 5px 10px;
 }
-.top_menu ul li ul li a{
+.top_menu ul li ul li a {
     display: block;
 }
-.top_menu ul li:hover ul{
+.top_menu ul li:hover ul {
     visibility: visible;
     opacity: 1;
 }
-.top_menu ul li ul li:hover{
-    background: #F7941D;
-    transition: all .4s ease-in-out;
+.top_menu ul li ul li:hover {
+    background: #f7941d;
+    transition: all 0.4s ease-in-out;
 }
 
 header.shop .middle-inner {
@@ -50,8 +48,7 @@ header.shop .middle-inner {
     right: -15px;
 }
 
-
-.btn_sm{
+.btn_sm {
     padding: 8px 32px;
 }
 
@@ -62,13 +59,13 @@ header.shop .middle-inner {
 
 .owl-nav {
     display: none !important;
- }
- .owl-theme .owl-dots {
+}
+.owl-theme .owl-dots {
     margin-top: -42px;
- }
- .owl-controls {
+}
+.owl-controls {
     z-index: 99999999;
- }
+}
 .owl-nav button {
     position: absolute;
     top: 50%;
@@ -76,43 +73,121 @@ header.shop .middle-inner {
     color: #fff;
     margin: 0;
     transition: all 0.3s ease-in-out;
-  }
-  .owl-nav button.owl-prev {
+}
+.owl-nav button.owl-prev {
     left: 0;
-  }
-  .owl-nav button.owl-next {
+}
+.owl-nav button.owl-next {
     right: 0;
-  }
+}
 
-  .owl-dots {
+.owl-dots {
     text-align: center;
     padding-top: 15px;
-  }
-  .owl-dots button.owl-dot {
+}
+.owl-dots button.owl-dot {
     width: 15px;
     height: 15px;
     border-radius: 50%;
     display: inline-block;
     background: #ccc;
     margin: 0 3px;
-  }
-  .owl-dots button.owl-dot.active {
+}
+.owl-dots button.owl-dot.active {
     background-color: #000;
-  }
-  .owl-dots button.owl-dot:focus {
+}
+.owl-dots button.owl-dot:focus {
     outline: none;
-  }
-  .owl-nav button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.38) !important;
-  }
-  .owl-controls span {
-      font-size: 70px;
-      position: relative;
-      top: -5px;
-  }
-  .owl-nav button:focus {
-      outline: none;
-  }
+}
+.owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.38) !important;
+}
+.owl-controls span {
+    font-size: 70px;
+    position: relative;
+    top: -5px;
+}
+.owl-nav button:focus {
+    outline: none;
+}
+
+/* theme customization */
+.section {
+    padding: 50px 0;
+}
+
+.button-container .qty {
+    text-align: center;
+}
+
+.all_product {
+    background: #fdf6ec;
+}
+.product-area .single-product {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.product-area .col-lg-2,
+.product-area .col-md-3 {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.product-area .single-product .button-head {
+    padding: 0px 50px !important;
+}
+
+.product-area .single-product .product-content {
+    padding: 0px 10px 10px 10px;
+}
+
+.single-product .product-img .product-action {
+    right: 10px;
+}
+
+.single-product .product-img .product-action-2 {
+    left: 10px;
+}
+
+.product-area .single-product .product-img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.single-product {
+    margin-top: 10px;
+}
+
+.default-img,
+.hover-img {
+    height: 180px;
+}
+
+.product-price {
+    color: #f7941d;
+}
+
+.discount .tk {
+    text-decoration: line-through;
+}
+
+.discount {
+    font-size: 12px;
+}
+.discount_product_area .discount_product {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 30px 10px;
+}
+
+.discount_product_area .discount_product .item {
+    padding-bottom: 30px;
+}
+.section-title {
+    margin-bottom: 0px;
+    padding: 0px 19px;
+}
