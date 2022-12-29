@@ -39,24 +39,25 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-4">
-                            <p>Quantity</p>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="button-container d-flex">
-                                <button class="cart-qty-minus p-2" type="button" value="-">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                                <input type="text" name="qty" min="1" class="qty form-control"
-                                    value="{{ $cart->quantity ?? 1 }}" />
-                                <button class="cart-qty-plus p-2" type="button" value="+">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
+                        <form action="{{ route('frontend.shipping.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
+                            <div class="col-md-4">
+                                <p>Quantity</p>
                             </div>
-
-                        </div>
+                            <div class="col-md-8">
+                                <div class="button-container d-flex">
+                                    <button class="cart-qty-minus p-2" type="button" value="-">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <input type="text" name="quantity" min="1" class="qty form-control"
+                                        value="{{ $cart->quantity ?? 1 }}" />
+                                    <button class="cart-qty-plus p-2" type="button" value="+">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
                     </div>
-                    <br>
                     <br>
                     <br>
                     <div class="row">
@@ -65,10 +66,11 @@
                                 <button type="submit" class="btn btn-secondary">Buy Now</button>
                             @endauth
                             @guest
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Buy Now</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Buy
+                                    Now</button>
                             @endguest
-
                         </div>
+                        </form>
                         <div class="col-md-6">
                             <form onsubmit="cart(event,'{{ $product->uuid }}')">
                                 @csrf
@@ -79,18 +81,18 @@
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#loginModal">Add to cart</button>
                                 @endguest
-
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3" style="background: rgb(238, 238, 238); padding: 10px !important">
+                <div class="col-md-3" style="background: rgb(238, 238, 238); padding: 10px !important; border-radius: 5px">
                     <div class="d-flex justify-content-between">
                         <p>Delivery </p>
-                        <p><a href="" >Change</a></p>
+                        <p><a href="">Change</a></p>
                     </div>
-
-                    <p><i class="fa-solid fa-location-dot"></i> {{ user()->district->name }}, {{ user()->upazila->name }}, {{ user()->union->name }}, {{ user()->address }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i> {{ user()->district->name ?? '' }},
+                        {{ user()->upazila->name ?? '' }}, {{ user()->union->name ?? '' }}, {{ user()->address ?? '' }}
+                    </p>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <p><i class="fa-solid fa-truck"></i> Standard Delivery </p>
@@ -107,7 +109,6 @@
         </div>
     </div>
     <!-- End Product Area -->
-
 
     @push('custom_scripts')
         <script src="https://unpkg.com/xzoom/dist/xzoom.min.js"></script>

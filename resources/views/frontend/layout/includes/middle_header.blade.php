@@ -4,7 +4,7 @@
             <div class="col-lg-2 col-md-2 col-12">
                 {{-- <!-- Logo --> --}}
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('backend/images/logo.png') }}" alt="logo"></a>
+                    <a href="index.html"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
                 </div>
                 {{-- <!--/ End Logo -->
                 <!-- Search Form --> --}}
@@ -25,12 +25,12 @@
             <div class="col-lg-8 col-md-7 col-12">
                 <div class="search-bar-top">
                     <div class="search-bar">
-                        <select>
+                        {{-- <select>
                             <option selected="selected">All Category</option>
                             <option>watch</option>
                             <option>mobile</option>
                             <option>kid’s item</option>
-                        </select>
+                        </select> --}}
                         <form>
                             <input name="search" placeholder="Search Products Here....." type="search">
                             <button class="btnn"><i class="ti-search"></i></button>

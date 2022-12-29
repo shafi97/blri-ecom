@@ -43,7 +43,6 @@
                         </div>
                     </div>
                     @endforeach
-
 				</div>
             </div>
     </div>
@@ -51,6 +50,6 @@
 
 
     @push('custom_scripts')
-    
+
    @endpush
 @endsection

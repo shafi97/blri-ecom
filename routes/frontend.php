@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ShippingController;
 
 Route::controller(CartController::class)->prefix('/cart')->group(function(){
     Route::get('/index', 'index')->name('cart.index');
@@ -14,3 +15,6 @@ Route::controller(CartController::class)->prefix('/cart')->group(function(){
 
 
 Route::delete('/cart/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
+Route::post('/shipping', [ShippingController::class, 'store'])->name('shipping.store');
+Route::post('/confirm', [ShippingController::class, 'confirm'])->name('shipping.confirm');

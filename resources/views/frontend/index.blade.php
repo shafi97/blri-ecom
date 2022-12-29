@@ -377,7 +377,7 @@
     </div> --}}
     <!-- End Most Popular Area -->
 
-    <!-- Start Shop Home List  -->
+    {{-- <!-- Start Shop Home List  -->
     <section class="shop-home-list section">
         <div class="container">
             <div class="row">
@@ -573,11 +573,9 @@
             </div>
         </div>
     </section>
-    <!-- End Shop Home List  -->
+    <!-- End Shop Home List  --> --}}
 
-
-
-    <!-- Start Shop Services Area -->
+    {{-- <!-- Start Shop Services Area -->
     <section class="shop-services section home">
         <div class="container">
             <div class="row">
@@ -620,8 +618,7 @@
             </div>
         </div>
     </section>
-    <!-- End Shop Services Area -->
-
+    <!-- End Shop Services Area --> --}}
 
     @push('custom_scripts')
         <script>

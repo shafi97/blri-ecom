@@ -180,7 +180,7 @@
     </div>
     <!--/ End Shopping Cart -->
 
-    <!-- Start Shop Services Area  -->
+    {{-- <!-- Start Shop Services Area  -->
     <section class="shop-services section">
         <div class="container">
             <div class="row">
@@ -223,7 +223,7 @@
             </div>
         </div>
     </section>
-    <!-- End Shop Newsletter -->
+    <!-- End Shop Newsletter --> --}}
     @push('custom_scripts')
         <script>
             // -----------------for-Shopping-cart-------------
@@ -245,8 +245,6 @@
                 });
                 $('.total').text(sum);
             }
-
-
 
             //----------------for quantity-increment-or-decrement-------
             var incrementQty;
@@ -271,9 +269,6 @@
                 }
                 update_amounts();
             });
-
-
-
 
             function incrementStore(e, cart_id) {
                 e.preventDefault();
@@ -306,10 +301,6 @@
                     error: err => {}
                 });
             }
-
-
-
-
         </script>
     @endpush
 @endsection

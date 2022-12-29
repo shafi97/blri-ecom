@@ -80,18 +80,16 @@ class ProductController extends Controller
         // dd($request->file_name);
         $files = $request->file('file_file');
         foreach ($files as  $k => $v){
-            // if ($v) {
-                $extension = $v->getClientOriginalExtension();
-                $fileName = "product_".rand(0, 100000).".".$extension;
-                $destinationPath = 'uploads/images/product'.'/';
-                $v->move($destinationPath, $fileName);
+            $extension = $v->getClientOriginalExtension();
+            $fileName = "product_".rand(0, 100000).".".$extension;
+            $destinationPath = 'uploads/images/product'.'/';
+            $v->move($destinationPath, $fileName);
 
-                $file_data['product_uuid'] = $product->uuid;
-                $file_data['type']         = $request->file_type[$k];
-                $file_data['file']         = $fileName;
-                $file_data['title']        = $request->file_title[$k];
-                ProductFile::create($file_data);
-            // }
+            $file_data['product_uuid'] = $product->uuid;
+            $file_data['type']         = $request->file_type[$k];
+            $file_data['file']         = $fileName;
+            $file_data['title']        = $request->file_title[$k];
+            ProductFile::create($file_data);
         }
 
         try {
