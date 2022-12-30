@@ -38,8 +38,9 @@
                         @endif
                     </div>
                     <hr>
-                    <div class="row">
-                        <form action="{{ route('frontend.shipping.store') }}" method="post">
+                    <form action="{{ route('frontend.shipping.store') }}" method="post">
+                        <div class="row">
+
                             @csrf
                             <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
                             <div class="col-md-4">
@@ -57,56 +58,57 @@
                                     </button>
                                 </div>
                             </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            @auth
-                                <button type="submit" class="btn btn-secondary">Buy Now</button>
-                            @endauth
-                            @guest
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Buy
-                                    Now</button>
-                            @endguest
                         </div>
-                        </form>
-                        <div class="col-md-6">
-                            <form onsubmit="cart(event,'{{ $product->uuid }}')">
-                                @csrf
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
                                 @auth
-                                    <button type="submit" class="btn btn-primary">Add to cart</button>
+                                    <button type="submit" class="btn btn-secondary">Buy Now</button>
                                 @endauth
                                 @guest
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#loginModal">Add to cart</button>
+                                        data-target="#loginModal">Buy
+                                        Now</button>
                                 @endguest
-                            </form>
-                        </div>
+                            </div>
+                    </form>
+                    <div class="col-md-6">
+                        <form onsubmit="cart(event,'{{ $product->uuid }}')">
+                            @csrf
+                            @auth
+                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                            @endauth
+                            @guest
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Add
+                                    to cart</button>
+                            @endguest
+                        </form>
                     </div>
-                </div>
-                <div class="col-md-3" style="background: rgb(238, 238, 238); padding: 10px !important; border-radius: 5px">
-                    <div class="d-flex justify-content-between">
-                        <p>Delivery </p>
-                        <p><a href="">Change</a></p>
-                    </div>
-                    <p><i class="fa-solid fa-location-dot"></i> {{ user()->district->name ?? '' }},
-                        {{ user()->upazila->name ?? '' }}, {{ user()->union->name ?? '' }}, {{ user()->address ?? '' }}
-                    </p>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <p><i class="fa-solid fa-truck"></i> Standard Delivery </p>
-                        <p>&#2547; 50</p>
-                    </div>
-                    <p><i class="fa-solid fa-money-bill"></i> Cash on Delivery Available</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>{{ $product->description }}</p>
+            <div class="col-md-3" style="background: rgb(238, 238, 238); padding: 10px !important; border-radius: 5px">
+                <div class="d-flex justify-content-between">
+                    <p>Delivery </p>
+                    <p><a href="">Change</a></p>
                 </div>
+                <p><i class="fa-solid fa-location-dot"></i> {{ user()->district->name ?? '' }},
+                    {{ user()->upazila->name ?? '' }}, {{ user()->union->name ?? '' }}, {{ user()->address ?? '' }}
+                </p>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <p><i class="fa-solid fa-truck"></i> Standard Delivery </p>
+                    <p>&#2547; 50</p>
+                </div>
+                <p><i class="fa-solid fa-money-bill"></i> Cash on Delivery Available</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{ $product->description }}</p>
+            </div>
+        </div>
+    </div>
     </div>
     <!-- End Product Area -->
 
