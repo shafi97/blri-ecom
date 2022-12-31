@@ -17,14 +17,24 @@ use App\Http\Controllers\Frontend\ProductController;
 |
 */
 
-Route::get('/frontend/logout', [AuthController::class, 'logout'])->name('frontend.logout');
+
+Route::get('/registration', [AuthController::class, 'registerView'])->name('frontend.registerView');
+Route::get('/getUpazila', [AuthController::class, 'getUpazila'])->name('frontend.getUpazila');
+Route::get('/getUnion', [AuthController::class, 'getUnion'])->name('frontend.getUnion');
+Route::post('/store', [AuthController::class, 'store'])->name('frontend.store');
+Route::get('/f_login', [AuthController::class, 'login'])->name('frontend.login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('frontend.logout');
+
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
 
 Route::controller(ProductController::class)->prefix('product')->group(function(){
     Route::get('/show/{product_uuid}', 'show')->name('product.show');
     Route::get('/by-category/{cat_uuid}', 'productByCat')->name('productByCat');
     Route::get('/by-sub-category/{sub_cat_uuid}', 'productBySubCat')->name('productBySubCat');
 });
+
 
 
 

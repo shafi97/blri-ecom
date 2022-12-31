@@ -53,14 +53,14 @@
 
 <body class="js">
     {{-- <!-- Preloader --> --}}
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- <!-- End Preloader --> --}}
 
     {{-- <!-- Header --> --}}
@@ -85,12 +85,6 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    {{-- <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> --}}
                     <form action="{{ route('login') }}" method="post">
                         @csrf
                         <div class="modal-body">
@@ -138,13 +132,16 @@
                                         <button type="submit" class="btn btn-primary">Sign In</button>
                                     </div>
                                 </div>
+
+                                <div class="col-12 text-center">
+                                    <div class="">
+                                        <br>
+                                        <span>Don’t have an account? </span><a href="{{ route('frontend.registerView') }}" style="font-size: 18px; color:#2874F0">Sign Up Now!</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
-                    {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
                 </div>
             </div>
         </div>
@@ -184,6 +181,7 @@
     <script src="{{ asset('frontend/js/active.js') }}"></script>
     <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @include('sweetalert::alert')
     <script>
         function toast(status, header, msg) {
             Command: toastr[status](header, msg)

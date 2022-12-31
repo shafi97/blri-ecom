@@ -10,7 +10,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <h4>Sign Up</h4>
-                            <p>Creat New account</p>
+                            <p>Create New account</p>
                         </div>
                         <form class="form-body row g-3">
                             <div class="col-12">
