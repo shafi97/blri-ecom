@@ -29,12 +29,12 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <p class="card-text">Subtotal</p>
-                                <p class="card-text">&#2547; {{ $priceWithoutDiscount }}</p>
+                                <p class="card-text">&#2547; {{ number_format($priceWithDiscount,2) }}</p>
                             </div>
                             <hr class="bg-primary my-1">
                             <div class="d-flex justify-content-between">
                                 <p class="card-text">Discount</p>
-                                <p class="card-text">&#2547; {{ $discount }}</p>
+                                <p class="card-text">&#2547; {{ number_format($discount,2) }}</p>
                             </div>
                             <hr class="bg-primary my-1">
                             <div class="d-flex justify-content-between">
@@ -44,12 +44,12 @@
                             <hr class="bg-primary my-1">
                             <div class="d-flex justify-content-between">
                                 <p class="card-text">Total</p>
-                                <p class="card-text">&#2547; {{ $priceWithDiscount + 50 }}</p>
+                                <p class="card-text">&#2547; {{ number_format($priceWithoutDiscount + 50,2) }}</p>
                             </div>
                             <hr class="bg-primary my-1">
                             <div class="d-flex justify-content-between">
                                 <p class="card-text"><b>Payable Total</b></p>
-                                <p class="card-text"><b>&#2547; {{ $priceWithDiscount + 50 }}</b></p>
+                                <p class="card-text"><b>&#2547; {{ number_format($priceWithoutDiscount + 50,2) }}</b></p>
                             </div>
                         </div>
                         {{-- <div class="card-footer text-muted">
@@ -62,14 +62,14 @@
                         <div class="card-header">Payment Method</div>
                         <form action="{{ route('frontend.shipping.confirm') }}">
                             @csrf
-                            <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
+                            {{-- <input type="hidden" name="product_uuid" value="{{ $product->uuid }}"> --}}
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-check payMethod">
+                                        <div class="form-check payMethod ">
                                             <input class="form-check-input" type="radio" name="pay_method"
                                                 id="cashOnDelivery" value="1">
-                                            <label class="form-check-label" for="cashOnDelivery">
+                                            <label class="form-check-label _text" for="cashOnDelivery">
                                                 <i class="fa-solid fa-hand-holding-dollar"></i> Cash on Delivery
                                             </label>
                                         </div>

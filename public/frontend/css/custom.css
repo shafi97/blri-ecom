@@ -218,3 +218,28 @@ header.shop .middle-inner {
     margin-bottom: 0px;
     padding: 0px 19px;
 }
+
+/* Shipping */
+.payMethod {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 10px 0 10px;
+    height: 60px;
+    width: 100%;
+}
+
+.payMethod label {
+    font-size: 20px;
+}
+.payMethod input[type="radio"] {
+    height: 28px;
+    width: 21px;
+}
+.payMethod ._text {
+    padding-top: 6px;
+}
+
+.payMethod .form-check-label {
+    padding-left: 35px;
+    margin-bottom: 0;
+}

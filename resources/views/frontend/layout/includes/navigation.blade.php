@@ -77,7 +77,7 @@
                                                     <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
                                                 </ul>
                                             </li> --}}
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>

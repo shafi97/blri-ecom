@@ -11,10 +11,14 @@ Route::controller(CartController::class)->prefix('/cart')->group(function(){
     Route::post('/incrementStore', 'incrementStore')->name('cart.incrementStore');
     Route::post('/decrementStore', 'decrementStore')->name('cart.decrementStore');
     Route::get('/delete/{uuid}', 'delete')->name('cart.delete');
+    Route::delete('/destroy', 'destroy')->name('cart.destroy');
 });
 
 
-Route::delete('/cart/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
-Route::post('/shipping', [ShippingController::class, 'store'])->name('shipping.store');
-Route::post('/confirm', [ShippingController::class, 'confirm'])->name('shipping.confirm');
+Route::controller(ShippingController::class)->prefix('/shipping')->group(function(){
+    Route::get('/', 'index')->name('shipping.index');
+    Route::post('/', 'store')->name('shipping.store');
+    Route::get('/multi', 'shippingMulti')->name('shipping.shippingMulti');
+    Route::post('/multiple/store', 'multipleStore')->name('shipping.multipleStore');
+    Route::post('/confirm', 'confirm')->name('shipping.confirm');
+});
