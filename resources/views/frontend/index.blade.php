@@ -108,7 +108,7 @@
                                         <div class="button-head">
                                             <div class="product-action">
                                                 {{-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> --}}
-                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to
+                                                <a title="Wishlist" href="javascript:;" onclick="wishlist(event,'{{ $discountProduct->uuid }}')"><i class=" ti-heart "></i><span>Add to
                                                         Wishlist</span></a>
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
                                             </div>

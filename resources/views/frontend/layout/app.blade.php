@@ -208,6 +208,7 @@
     <script>
         $(document).ready(function() {
             cartShow()
+            wishlistShow()
         })
 
         function cartShow() {
@@ -253,6 +254,53 @@
                 error: err => {}
             });
         }
+
+        // Wishlist
+        function wishlistShow() {
+            $.ajax({
+                url: '{{ route('frontend.wishlist.show') }}',
+                method: 'get',
+                success: function(res) {
+                    if (res.status == 'success') {
+                        $('#wishlist').html(res.html);
+                    }
+                }
+            });
+        }
+
+        function wishlistDelete(e, wishlist_id) {
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('frontend.wishlist.destroy') }}',
+                type: 'delete',
+                data: {
+                    uuid: wishlist_id,
+                },
+                success: res => {
+                    wishlistShow()
+                    toast('success', res.message)
+                },
+                error: err => {}
+            });
+        }
+
+        function wishlist(e, product_id) {
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('frontend.wishlist.store') }}',
+                type: 'POST',
+                data: {
+                    'product_id': product_id,
+                },
+                success: res => {
+                    wishlistShow()
+                    toast('success', res.message)
+                },
+                error: err => {}
+            });
+        }
+
+
     </script>
 </body>
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ShippingController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 Route::controller(CartController::class)->prefix('/cart')->group(function(){
     Route::get('/index', 'index')->name('cart.index');
@@ -12,6 +13,16 @@ Route::controller(CartController::class)->prefix('/cart')->group(function(){
     Route::post('/decrementStore', 'decrementStore')->name('cart.decrementStore');
     Route::get('/delete/{uuid}', 'delete')->name('cart.delete');
     Route::delete('/destroy', 'destroy')->name('cart.destroy');
+});
+
+Route::controller(WishlistController::class)->prefix('/wishlist')->group(function(){
+    Route::get('/index', 'index')->name('wishlist.index');
+    Route::post('/store', 'store')->name('wishlist.store');
+    Route::get('/show', 'show')->name('wishlist.show');
+    // Route::post('/incrementStore', 'incrementStore')->name('wishlist.incrementStore');
+    // Route::post('/decrementStore', 'decrementStore')->name('wishlist.decrementStore');
+    Route::get('/delete/{uuid}', 'delete')->name('wishlist.delete');
+    Route::delete('/destroy', 'destroy')->name('wishlist.destroy');
 });
 
 
