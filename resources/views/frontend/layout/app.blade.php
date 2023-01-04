@@ -53,14 +53,14 @@
 
 <body class="js">
     {{-- <!-- Preloader --> --}}
-    {{-- <div class="preloader">
+    <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- <!-- End Preloader --> --}}
 
     {{-- <!-- Header --> --}}
@@ -78,6 +78,17 @@
     <!-- Start Footer Area -->
     @include('frontend.layout.includes.footer')
     <!-- /End Footer Area -->
+
+    @if ($errors->any())
+        <div id="error_msg" class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 
     <!-- Login Modal -->
     <div style="max-width: 50%">
@@ -136,7 +147,9 @@
                                 <div class="col-12 text-center">
                                     <div class="">
                                         <br>
-                                        <span>Don’t have an account? </span><a href="{{ route('frontend.registerView') }}" style="font-size: 18px; color:#2874F0">Sign Up Now!</a>
+                                        <span>Don’t have an account? </span><a
+                                            href="{{ route('frontend.registerView') }}"
+                                            style="font-size: 18px; color:#2874F0">Sign Up Now!</a>
                                     </div>
                                 </div>
                             </div>
@@ -147,40 +160,43 @@
         </div>
     </div>
 
-    <!-- Jquery -->
+    {{-- <!-- Jquery --> --}}
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-migrate-3.0.0.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
-    <!-- Popper JS -->
+    {{-- <!-- Popper JS --> --}}
     <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
-    <!-- Bootstrap JS -->
+    {{-- <!-- Bootstrap JS --> --}}
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    <!-- Color JS -->
+    {{-- <!-- Color JS --> --}}
     <script src="{{ asset('frontend/js/colors.js') }}"></script>
-    <!-- Slicknav JS -->
+    {{-- <!-- Slicknav JS --> --}}
     <script src="{{ asset('frontend/js/slicknav.min.js') }}"></script>
-    <!-- Owl Carousel JS -->
+    {{-- <!-- Owl Carousel JS --> --}}
     <script src="{{ asset('frontend/js/owl-carousel.js') }}"></script>
-    <!-- Magnific Popup JS -->
+    {{-- <!-- Magnific Popup JS --> --}}
     <script src="{{ asset('frontend/js/magnific-popup.js') }}"></script>
-    <!-- Waypoints JS -->
+    {{-- <!-- Waypoints JS --> --}}
     <script src="{{ asset('frontend/js/waypoints.min.js') }}"></script>
-    <!-- Countdown JS -->
+    {{-- <!-- Countdown JS --> --}}
     <script src="{{ asset('frontend/js/finalcountdown.min.js') }}"></script>
-    <!-- Nice Select JS -->
+    {{-- <!-- Nice Select JS --> --}}
     <script src="{{ asset('frontend/js/nicesellect.js') }}"></script>
-    <!-- Flex Slider JS -->
+    {{-- <!-- Flex Slider JS --> --}}
     <script src="{{ asset('frontend/js/flex-slider.js') }}"></script>
-    <!-- ScrollUp JS -->
+    {{-- <!-- ScrollUp JS --> --}}
     <script src="{{ asset('frontend/js/scrollup.js') }}"></script>
-    <!-- Onepage Nav JS -->
+    {{-- <!-- Onepage Nav JS --> --}}
     <script src="{{ asset('frontend/js/onepage-nav.min.js') }}"></script>
-    <!-- Easing JS -->
+    {{-- <!-- Easing JS --> --}}
     <script src="{{ asset('frontend/js/easing.js') }}"></script>
-    <!-- Active JS -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <!-- Active JS --> --}}
     <script src="{{ asset('frontend/js/active.js') }}"></script>
     <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     @include('sweetalert::alert')
     <script>
         function toast(status, header, msg) {
@@ -207,100 +223,108 @@
     @stack('custom_scripts')
     <script>
         $(document).ready(function() {
+            // Login validation msg
+            if ({{ $errors->count() }}) {
+                Swal.fire({
+                    title: 'Error',
+                    icon: 'error',
+                    html: jQuery("#error_msg").html(),
+                    showCloseButton: true,
+                })
+            }
+
             cartShow()
             wishlistShow()
+
+            function cartShow() {
+                $.ajax({
+                    url: '{{ route('frontend.cart.show') }}',
+                    method: 'get',
+                    success: function(res) {
+                        if (res.status == 'success') {
+                            $('#cart').html(res.html);
+                        }
+                    }
+                });
+            }
+
+            function cartDelete(e, cart_id) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{ route('frontend.cart.destroy') }}',
+                    type: 'delete',
+                    data: {
+                        uuid: cart_id,
+                    },
+                    success: res => {
+                        cartShow()
+                        toast('success', res.message)
+                    },
+                    error: err => {}
+                });
+            }
+
+            function cart(e, product_id) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{ route('frontend.cart.store') }}',
+                    type: 'POST',
+                    data: {
+                        'product_id': product_id,
+                    },
+                    success: res => {
+                        cartShow()
+                        toast('success', res.message)
+                    },
+                    error: err => {}
+                });
+            }
+
+            // Wishlist
+            function wishlistShow() {
+                $.ajax({
+                    url: '{{ route('frontend.wishlist.show') }}',
+                    method: 'get',
+                    success: function(res) {
+                        if (res.status == 'success') {
+                            $('#wishlist').html(res.html);
+                        }
+                    }
+                });
+            }
+
+            function wishlistDelete(e, wishlist_id) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{ route('frontend.wishlist.destroy') }}',
+                    type: 'delete',
+                    data: {
+                        uuid: wishlist_id,
+                    },
+                    success: res => {
+                        wishlistShow()
+                        toast('success', res.message)
+                    },
+                    error: err => {}
+                });
+            }
+
+            function wishlist(e, product_id) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{ route('frontend.wishlist.store') }}',
+                    type: 'POST',
+                    data: {
+                        'product_id': product_id,
+                    },
+                    success: res => {
+                        wishlistShow()
+                        toast('success', res.message)
+                    },
+                    error: err => {}
+                });
+            }
         })
-
-        function cartShow() {
-            $.ajax({
-                url: '{{ route('frontend.cart.show') }}',
-                method: 'get',
-                success: function(res) {
-                    if (res.status == 'success') {
-                        $('#cart').html(res.html);
-                    }
-                }
-            });
-        }
-
-        function cartDelete(e, cart_id) {
-            e.preventDefault();
-            $.ajax({
-                url: '{{ route('frontend.cart.destroy') }}',
-                type: 'delete',
-                data: {
-                    uuid: cart_id,
-                },
-                success: res => {
-                    cartShow()
-                    toast('success', res.message)
-                },
-                error: err => {}
-            });
-        }
-
-        function cart(e, product_id) {
-            e.preventDefault();
-            $.ajax({
-                url: '{{ route('frontend.cart.store') }}',
-                type: 'POST',
-                data: {
-                    'product_id': product_id,
-                },
-                success: res => {
-                    cartShow()
-                    toast('success', res.message)
-                },
-                error: err => {}
-            });
-        }
-
-        // Wishlist
-        function wishlistShow() {
-            $.ajax({
-                url: '{{ route('frontend.wishlist.show') }}',
-                method: 'get',
-                success: function(res) {
-                    if (res.status == 'success') {
-                        $('#wishlist').html(res.html);
-                    }
-                }
-            });
-        }
-
-        function wishlistDelete(e, wishlist_id) {
-            e.preventDefault();
-            $.ajax({
-                url: '{{ route('frontend.wishlist.destroy') }}',
-                type: 'delete',
-                data: {
-                    uuid: wishlist_id,
-                },
-                success: res => {
-                    wishlistShow()
-                    toast('success', res.message)
-                },
-                error: err => {}
-            });
-        }
-
-        function wishlist(e, product_id) {
-            e.preventDefault();
-            $.ajax({
-                url: '{{ route('frontend.wishlist.store') }}',
-                type: 'POST',
-                data: {
-                    'product_id': product_id,
-                },
-                success: res => {
-                    wishlistShow()
-                    toast('success', res.message)
-                },
-                error: err => {}
-            });
-        }
-
-
     </script>
 </body>
 
