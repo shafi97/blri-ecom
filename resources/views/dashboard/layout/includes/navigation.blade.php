@@ -62,6 +62,26 @@
         </a>
     </li>
 
+    {{-- Order --}}
+    <li>
+        <a href="{{ route('admin.order.index') }}">
+            <div class="parent-icon">
+                <ion-icon name="document-text-sharp"></ion-icon>
+            </div>
+            <div class="menu-title">Order</div>
+        </a>
+    </li>
+
+    {{-- stock --}}
+    <li>
+        <a href="{{ route('admin.stock.index') }}">
+            <div class="parent-icon">
+                <ion-icon name="document-text-sharp"></ion-icon>
+            </div>
+            <div class="menu-title">Stock</div>
+        </a>
+    </li>
+
     <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon">

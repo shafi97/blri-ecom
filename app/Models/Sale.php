@@ -15,4 +15,14 @@ class Sale extends Model
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_uuid', 'uuid');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
+    }
 }

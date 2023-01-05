@@ -36,4 +36,14 @@ class Product extends Model
     {
         return $this->hasMany(ProductFile::class, 'product_uuid','uuid');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class, 'product_uuid', 'uuid');
+    }
 }

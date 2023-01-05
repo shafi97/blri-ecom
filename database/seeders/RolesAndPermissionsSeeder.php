@@ -96,6 +96,13 @@ class RolesAndPermissionsSeeder extends Seeder
                 'slider-edit',
                 'slider-delete',
             ],
+            'order'=>[
+                'order-manage',
+                'order-delete',
+            ],
+            'store'=>[
+                'store-manage',
+            ],
 
         ];
         foreach ($pers as $per => $val) {

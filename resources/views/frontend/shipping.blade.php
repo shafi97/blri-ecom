@@ -60,7 +60,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">Payment Method</div>
-                        <form action="{{ route('frontend.shipping.confirm') }}">
+                        <form action="{{ route('frontend.shipping.confirm') }}" method="post">
                             @csrf
                             <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
                             <div class="card-body">
@@ -68,7 +68,7 @@
                                     <div class="col-md-6">
                                         <div class="form-check payMethod">
                                             <input class="form-check-input" type="radio" name="pay_method"
-                                                id="cashOnDelivery" value="1">
+                                                id="cashOnDelivery" value="1" required>
                                             <label class="form-check-label" for="cashOnDelivery">
                                                 <i class="fa-solid fa-hand-holding-dollar"></i> Cash on Delivery
                                             </label>
@@ -77,7 +77,7 @@
                                     <div class="col-md-6">
                                         <div class="form-check payMethod">
                                             <input class="form-check-input" type="radio" name="pay_method" id="bank"
-                                                value="2">
+                                                value="2" required>
                                             <label class="form-check-label" for="bank">
                                                 <img src="{{ asset('frontend/images/icon-ssl.png') }}" alt="">
                                             </label>
