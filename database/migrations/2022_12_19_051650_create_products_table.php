@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
-            $table->string('user_uuid')->index();
-            $table->foreign('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
-            $table->string('category_uuid')->index();
-            $table->foreign('category_uuid')->references('uuid')->on('categories')->onDelete('cascade');
-            $table->string('sub_category_uuid')->nullable()->index();
-            $table->foreign('sub_category_uuid')->references('uuid')->on('sub_categories')->onDelete('cascade');
+            $table->id('id')->unique();
+            $table->string('user_id')->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('category_id')->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->string('sub_category_id')->nullable()->index();
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->string('tran_id',64);
             $table->tinyInteger('type')->comment('1=in stock, 2=sale');
             $table->string('name',255);

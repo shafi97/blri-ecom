@@ -12,7 +12,7 @@ class WishlistController extends Controller
     public function index()
     {
         if(auth()->check()){
-            $carts = Wishlist::with(['product','product.file'])->whereUser_uuid(user()->uuid)->get();
+            $carts = Wishlist::with(['product','product.file'])->whereUser_id(user()->id)->get();
             return view('frontend.cart', compact('carts'));
         }else{
             return redirect()->route('index');
@@ -24,11 +24,11 @@ class WishlistController extends Controller
         try {
             Wishlist::updateOrCreate(
                 [
-                    'product_uuid' => $request->product_id,
-                    'user_uuid' => user()->uuid],
+                    'product_id' => $request->product_id,
+                    'user_id' => user()->id],
                 [
-                    'product_uuid' => $request->product_id,
-                    'user_uuid' => user()->uuid,
+                    'product_id' => $request->product_id,
+                    'user_id' => user()->id,
                     // 'quantity' => 1,
                 ]);
             return response()->json(['message'=> 'Added to add to wishlist'], 200);
@@ -40,7 +40,7 @@ class WishlistController extends Controller
 
     public function show()
     {
-        $wishlists = Wishlist::with(['product','product.file'])->whereUser_uuid(user()->uuid)->get();
+        $wishlists = Wishlist::with(['product','product.file'])->whereUser_id(user()->id)->get();
         $wishlist = view('frontend.layout.includes.wishlist', ['wishlists' => $wishlists])->render();
         return response()->json(['status' => 'success', 'html' => $wishlist, 'wishlist']);
     }
@@ -48,7 +48,7 @@ class WishlistController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Wishlist::find($request->uuid)->delete();
+            Wishlist::find($request->id)->delete();
             return response()->json(['message'=> 'Remove from add to wishlist'], 200);
         } catch (\Exception $e) {
             // return response()->json(['message'=>__('app.oops')], 500);
@@ -56,10 +56,10 @@ class WishlistController extends Controller
         }
     }
 
-    public function delete($uuid)
+    public function delete($id)
     {
         try {
-            Wishlist::find($uuid)->delete();
+            Wishlist::find($id)->delete();
             Alert::success('Success','Cart deleted successfully');
             return back();
         } catch (\Exception $e) {

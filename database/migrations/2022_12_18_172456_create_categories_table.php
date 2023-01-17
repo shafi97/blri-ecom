@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
-            $table->string('user_uuid')->index();
-            $table->foreign('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
+            $table->id('id')->unique();
+            $table->string('user_id')->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name',191)->unique();
             $table->timestamps();
             $table->softDeletes();

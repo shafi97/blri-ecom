@@ -9,7 +9,7 @@
         <ul class="shopping-list">
             @foreach ($datum as $data)
                 <li>
-                    <a href="#" onClick="cartDelete(event, '{{ $data->uuid }}')" class="remove"
+                    <a href="#" onClick="cartDelete(event, '{{ $data->id }}')" class="remove"
                         title="Remove this item"><i class="fa fa-remove"></i></a>
                     <a class="cart-img" href="#"><img
                             src="{{ imagePath('product', $data->product->file->file) }}" alt="#"></a>

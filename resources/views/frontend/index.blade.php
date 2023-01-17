@@ -97,7 +97,7 @@
                             <div class="col-md-12">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="{{ route('product.show', $discountProduct->uuid) }}">
+                                        <a href="{{ route('product.show', $discountProduct->id) }}">
                                             <img class="default-img"
                                                 src="{{ imagePath('product', $discountProduct->file->file) }}"
                                                 alt="#">
@@ -111,7 +111,7 @@
                                                      <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> --}}
                                                 @auth
                                                     <a title="Wishlist" href="javascript:;"
-                                                        onclick="wishlist(event,'{{ $discountProduct->uuid }}')"><i
+                                                        onclick="wishlist(event,'{{ $discountProduct->id }}')"><i
                                                             class=" ti-heart "></i><span>Add to
                                                             Wishlist</span></a>
                                                 @endauth
@@ -123,7 +123,7 @@
                                                 {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
                                             </div>
                                             <div class="product-action-2">
-                                                <form onsubmit="cart(event,'{{ $discountProduct->uuid }}')">
+                                                <form onsubmit="cart(event,'{{ $discountProduct->id }}')">
                                                     @csrf
                                                     @auth
                                                         <button type="submit">Add to cart</button>
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="product-content">
                                         <h3><a
-                                                href="{{ route('product.show', $discountProduct->uuid) }}">{{ $discountProduct->name }}</a>
+                                                href="{{ route('product.show', $discountProduct->id) }}">{{ $discountProduct->name }}</a>
                                         </h3>
                                         <div class="product-price">
                                             <span>&#2547;{{ number_format($discountProduct->price - ($discountProduct->price * $discountProduct->discount) / 100) }}</span>
@@ -177,7 +177,7 @@
                     <div class="col-lg-2 col-md-3">
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="{{ route('product.show', $product->uuid) }}">
+                                <a href="{{ route('product.show', $product->id) }}">
                                     <img class="default-img" src="{{ imagePath('product', $product->file->file) }}"
                                         alt="#">
                                     <img class="hover-img" src="{{ imagePath('product', $product->file->file) }}"
@@ -188,7 +188,7 @@
                                         {{-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> --}}
                                         @auth
                                             <a title="Wishlist" href="javascript:;"
-                                                onclick="wishlist(event,'{{ $discountProduct->uuid }}')"><i
+                                                onclick="wishlist(event,'{{ $discountProduct->id }}')"><i
                                                     class=" ti-heart "></i><span>Add to
                                                     Wishlist</span></a>
                                         @endauth
@@ -201,7 +201,7 @@
                                         {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
                                     </div>
                                     <div class="product-action-2">
-                                        <form onsubmit="cart(event,'{{ $discountProduct->uuid }}')">
+                                        <form onsubmit="cart(event,'{{ $discountProduct->id }}')">
                                             @csrf
                                             @auth
                                                 <button type="submit">Add to cart</button>
@@ -215,7 +215,7 @@
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="{{ route('product.show', $product->uuid) }}">{{ $product->name }}</a></h3>
+                                <h3><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h3>
                                 <div class="product-price">
                                     <span>&#2547;{{ number_format($product->price - ($product->price * $product->discount) / 100) }}</span>
                                 </div>
@@ -699,7 +699,7 @@
             //         url: '{{ route('frontend.cart.destroy') }}',
             //         type: 'delete',
             //         data: {
-            //             uuid: cart_id,
+            //             id: cart_id,
             //         },
             //         success: res => {
             //             cartShow()

@@ -11,15 +11,15 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="category_uuid" class="form-label required">Category Name </label>
-                            <select class="form-select" name="category_uuid" required>
+                            <label for="category_id" class="form-label required">Category Name </label>
+                            <select class="form-select" name="category_id" required>
                                 <option selected disabled value="">Choose...</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->uuid }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('category_uuid'))
-                                <div class="alert alert-danger">{{ $errors->first('category_uuid') }}</div>
+                            @if ($errors->has('category_id'))
+                                <div class="alert alert-danger">{{ $errors->first('category_id') }}</div>
                             @endif
                         </div>
                         <div class="col-md-6">

@@ -1,7 +1,7 @@
 @php
     $categories = App\Models\Category::with('subCategories')
         ->orderBy('name')
-        ->get(['uuid', 'name']);
+        ->get(['id', 'name']);
 @endphp
 <div class="header-inner">
     <div class="container">
@@ -13,7 +13,7 @@
                             <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                             <ul class="main-category">
                                 @foreach ($categories as $category)
-                                    <li><a href="{{ route('productByCat', $category->uuid) }}">{{ $category->name }}
+                                    <li><a href="{{ route('productByCat', $category->id) }}">{{ $category->name }}
                                             @if ($category->subCategories->count() > 0)
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             @endif
@@ -22,7 +22,7 @@
                                             <ul class="sub-category">
                                                 @foreach ($category->subCategories as $subCategory)
                                                     <li><a
-                                                            href="{{ route('productBySubCat', $subCategory->uuid) }}">{{ $subCategory->name }}</a>
+                                                            href="{{ route('productBySubCat', $subCategory->id) }}">{{ $subCategory->name }}</a>
                                                     </li>
                                                 @endforeach
 
@@ -46,7 +46,7 @@
                                         <li><a href="#">Product<i class="ti-angle-down"></i></a>
                                             <ul class="dropdown main_menu">
                                                 @foreach ($categories as $category)
-                                                    <li><a href="{{ route('productByCat', $category->uuid) }}">{{ $category->name }}
+                                                    <li><a href="{{ route('productByCat', $category->id) }}">{{ $category->name }}
                                                             @if ($category->subCategories->count() > 0)
                                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                             @endif
@@ -56,7 +56,7 @@
                                                                 @foreach ($category->subCategories as $subCategory)
                                                                     <li>
                                                                         <a
-                                                                            href="{{ route('productBySubCat', $subCategory->uuid) }}">{{ $subCategory->name }}</a>
+                                                                            href="{{ route('productBySubCat', $subCategory->id) }}">{{ $subCategory->name }}</a>
                                                                     </li>
                                                                 @endforeach
                                                             </ul>

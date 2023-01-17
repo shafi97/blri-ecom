@@ -169,12 +169,12 @@
             });
         });
 
-    $('#category_uuid').change(function () {
+    $('#category_id').change(function () {
         $.ajax({
             url:'{{route("admin.getSubCategory")}}',
             method:'get',
             data:{
-                category_uuid : $(this).val(),
+                category_id : $(this).val(),
             },
             success: function (res) {
                 if (res.status == 'success') {

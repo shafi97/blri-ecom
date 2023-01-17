@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
         if ($request->ajax()) {
             user()->role == 1 ?
             $sub_category = SubCategory::with('category')->orderBy('name') :
-            $sub_category = SubCategory::with('category')->whereUser_uuid(user()->uuid)->orderBy('name');
+            $sub_category = SubCategory::with('category')->whereUser_id(user()->id)->orderBy('name');
             return DataTables::of($sub_category)
                 ->addIndexColumn()
                 ->addColumn('category_name', function ($row) {
@@ -30,18 +30,18 @@ class SubCategoryController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '';
                     if (userCan('sub-category-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.category.edit', $row->uuid) , 'row' => $row]);
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.category.edit', $row->id) , 'row' => $row]);
                     }
                     if (userCan('sub-category-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.category.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.category.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
                 ->rawColumns(['category_name','action', 'created_at'])
                 ->make(true);
         }
-        user()->role == 1 ? $categories = Category::orderBy('name')->get(['uuid','name']) :
-        $categories = Category::whereUser_uuid(user()->uuid)->orderBy('name')->get(['uuid','name']);
+        user()->role == 1 ? $categories = Category::orderBy('name')->get(['id','name']) :
+        $categories = Category::whereUser_id(user()->id)->orderBy('name')->get(['id','name']);
         return view('dashboard.sub_category.index', compact('categories'));
     }
 
@@ -51,10 +51,10 @@ class SubCategoryController extends Controller
             return $error;
         }
         $data = $request->validate([
-            'category_uuid' =>'required|uuid',
+            'category_id' =>'required|id',
             'name' =>'required|unique:sub_categories,name|string|max:191',
         ]);
-        $data['user_uuid'] = user()->uuid;
+        $data['user_id'] = user()->id;
 
         try {
             SubCategory::create($data);

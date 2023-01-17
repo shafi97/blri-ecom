@@ -42,7 +42,7 @@
                         <div class="row">
 
                             @csrf
-                            <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="col-md-4">
                                 <p>Quantity</p>
                             </div>
@@ -74,7 +74,7 @@
                             </div>
                     </form>
                     <div class="col-md-6">
-                        <form onsubmit="cart(event,'{{ $product->uuid }}')">
+                        <form onsubmit="cart(event,'{{ $product->id }}')">
                             @csrf
                             @auth
                                 <button type="submit" class="btn btn-primary">Add to cart</button>

@@ -11,7 +11,7 @@ Route::controller(CartController::class)->prefix('/cart')->group(function(){
     Route::get('/show', 'show')->name('cart.show');
     Route::post('/incrementStore', 'incrementStore')->name('cart.incrementStore');
     Route::post('/decrementStore', 'decrementStore')->name('cart.decrementStore');
-    Route::get('/delete/{uuid}', 'delete')->name('cart.delete');
+    Route::get('/delete/{id}', 'delete')->name('cart.delete');
     Route::delete('/destroy', 'destroy')->name('cart.destroy');
 });
 
@@ -21,7 +21,7 @@ Route::controller(WishlistController::class)->prefix('/wishlist')->group(functio
     Route::get('/show', 'show')->name('wishlist.show');
     // Route::post('/incrementStore', 'incrementStore')->name('wishlist.incrementStore');
     // Route::post('/decrementStore', 'decrementStore')->name('wishlist.decrementStore');
-    Route::get('/delete/{uuid}', 'delete')->name('wishlist.delete');
+    Route::get('/delete/{id}', 'delete')->name('wishlist.delete');
     Route::delete('/destroy', 'destroy')->name('wishlist.destroy');
 });
 

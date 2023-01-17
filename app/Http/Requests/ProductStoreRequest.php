@@ -25,8 +25,8 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'name'              => 'required|max:255',
-            'category_uuid'     => 'required|uuid',
-            'sub_category_uuid' => 'nullable|uuid',
+            'category_id'     => 'required|id',
+            'sub_category_id' => 'nullable|id',
             'weight'            => 'required|string|max:32',
             'weight_unit'       => 'required|string|max:32',
             'd_o_b'             => 'nullable|date',

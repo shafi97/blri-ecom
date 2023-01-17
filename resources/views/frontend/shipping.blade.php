@@ -62,7 +62,7 @@
                         <div class="card-header">Payment Method</div>
                         <form action="{{ route('frontend.shipping.confirm') }}" method="post">
                             @csrf
-                            <input type="hidden" name="product_uuid" value="{{ $product->uuid }}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">

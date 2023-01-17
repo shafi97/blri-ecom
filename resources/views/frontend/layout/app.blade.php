@@ -254,7 +254,7 @@
                     url: '{{ route('frontend.cart.destroy') }}',
                     type: 'delete',
                     data: {
-                        uuid: cart_id,
+                        id: cart_id,
                     },
                     success: res => {
                         cartShow()
@@ -299,7 +299,7 @@
                     url: '{{ route('frontend.wishlist.destroy') }}',
                     type: 'delete',
                     data: {
-                        uuid: wishlist_id,
+                        id: wishlist_id,
                     },
                     success: res => {
                         wishlistShow()

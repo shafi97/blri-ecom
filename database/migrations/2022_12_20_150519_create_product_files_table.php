@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product_files', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
-            $table->string('product_uuid')->index();
-            $table->foreign('product_uuid')->references('uuid')->on('products')->onDelete('cascade');
+            $table->id('id')->unique();
+            $table->string('product_id')->index();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->boolean('type')->comment('1=Image, 2=video file, 3=youtube');
             $table->string('file',191);
             $table->string('title',191)->nullable();

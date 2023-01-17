@@ -17,11 +17,11 @@ class CategoryController extends Controller
         }
         if ($request->ajax()) {
                 user()->role == 1 ? $category = Category::orderBy('name') :
-                $category = Category::whereUser_uuid(user()->uuid)->orderBy('name');
+                $category = Category::whereUser_id(user()->id)->orderBy('name');
             return DataTables::of($category)
                 ->addIndexColumn()
                 ->addColumn('check', function ($row) {
-                    return '<input type="checkbox" name="select[]" onclick="checkcheckbox()" id="check_'.$row->uuid.'" class="check" value="'.$row->uuid.'">';
+                    return '<input type="checkbox" name="select[]" onclick="checkcheckbox()" id="check_'.$row->id.'" class="check" value="'.$row->id.'">';
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->diffForHumans();
@@ -29,10 +29,10 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '';
                     if (userCan('category-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.category.edit', $row->uuid) , 'row' => $row]);
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.category.edit', $row->id) , 'row' => $row]);
                     }
                     if (userCan('category-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.category.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.category.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' =>'required|unique:categories,name|string|max:191',
         ]);
-        $data['user_uuid'] = user()->uuid;
+        $data['user_id'] = user()->id;
 
         try {
             Category::create($data);

@@ -12,7 +12,7 @@ class CartController extends Controller
     public function index()
     {
         if(auth()->check()){
-            $carts = Cart::with(['product','product.file'])->whereUser_uuid(user()->uuid)->get();
+            $carts = Cart::with(['product','product.file'])->whereUser_id(user()->id)->get();
             return view('frontend.cart', compact('carts'));
         }else{
             return redirect()->route('index');
@@ -24,11 +24,11 @@ class CartController extends Controller
         try {
             Cart::updateOrCreate(
                 [
-                    'product_uuid' => $request->product_id,
-                    'user_uuid' => user()->uuid],
+                    'product_id' => $request->product_id,
+                    'user_id' => user()->id],
                 [
-                    'product_uuid' => $request->product_id,
-                    'user_uuid' => user()->uuid,
+                    'product_id' => $request->product_id,
+                    'user_id' => user()->id,
                     'quantity' => 1,
                 ]);
             return response()->json(['message'=> 'Added to add to cart'], 200);
@@ -65,7 +65,7 @@ class CartController extends Controller
 
     public function show()
     {
-        $datum = Cart::with(['product','product.file'])->whereUser_uuid(user()->uuid)->get();
+        $datum = Cart::with(['product','product.file'])->whereUser_id(user()->id)->get();
         $carts = view('frontend.layout.includes.cart', ['datum' => $datum])->render();
         return response()->json(['status' => 'success', 'html' => $carts, 'carts']);
     }
@@ -73,7 +73,7 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Cart::find($request->uuid)->delete();
+            Cart::find($request->id)->delete();
             return response()->json(['message'=> 'Remove from add to cart'], 200);
         } catch (\Exception $e) {
             // return response()->json(['message'=>__('app.oops')], 500);
@@ -81,10 +81,10 @@ class CartController extends Controller
         }
     }
 
-    public function delete($uuid)
+    public function delete($id)
     {
         try {
-            Cart::find($uuid)->delete();
+            Cart::find($id)->delete();
             Alert::success('Success','Cart deleted successfully');
             return back();
         } catch (\Exception $e) {

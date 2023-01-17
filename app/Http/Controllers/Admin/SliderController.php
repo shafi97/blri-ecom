@@ -16,7 +16,7 @@ class SliderController extends Controller
         }
         if ($request->ajax()) {
                 user()->role == 1 ? $sliders = Slider::query() :
-                $sliders = Slider::whereUser_uuid(user()->uuid);
+                $sliders = Slider::whereUser_id(user()->id);
             return DataTables::of($sliders)
                 ->addIndexColumn()
                 ->addColumn('created_at', function ($row) {
@@ -32,10 +32,10 @@ class SliderController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '';
                     if (userCan('slider-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.slider.edit', $row->uuid) , 'row' => $row]);
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.slider.edit', $row->id) , 'row' => $row]);
                     }
                     if (userCan('slider-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.slider.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.slider.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
@@ -54,7 +54,7 @@ class SliderController extends Controller
             'image' => 'required|image|mimes:jpeg,jpg,JPG,png|max:3072',
             'text'  => 'required',
         ]);
-        $data['user_uuid'] = user()->uuid;
+        $data['user_id'] = user()->id;
         if($request->hasFile('image')){
             $data['image'] = imageStore($request, 'image','slider', 'uploads/images/slider/');
         }

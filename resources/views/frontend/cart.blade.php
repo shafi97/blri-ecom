@@ -38,7 +38,7 @@
                             <tbody>
 
                                 @foreach ($carts as $cart)
-                                    <input type="hidden" name="product_uuid[]" value="{{ $cart->product_uuid }}">
+                                    <input type="hidden" name="product_id[]" value="{{ $cart->product_id }}">
                                     <tr>
                                         <td>
                                             <div class="product-img">
@@ -53,13 +53,13 @@
                                         <td>
                                             <div class="button-container d-flex">
                                                 <button class="cart-qty-minus p-2" type="button" value="-"
-                                                    onclick="decrementStore(event, '{{ $cart->uuid }}')">
+                                                    onclick="decrementStore(event, '{{ $cart->id }}')">
                                                     <i class="fa-solid fa-minus"></i>
                                                 </button>
                                                 <input type="text" name="quantity" min="1"
                                                     class="qty form-control" value="{{ $cart->quantity }}" />
                                                 <button class="cart-qty-plus p-2" type="button" value="+"
-                                                    onclick="incrementStore(event, '{{ $cart->uuid }}')">
+                                                    onclick="incrementStore(event, '{{ $cart->id }}')">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
                                             </div>
@@ -73,7 +73,7 @@
                                                 class="amount">{{ $cart->quantity * $cart->product->price }}</span>
                                         </td>
                                         <td class="action" data-title="Remove">
-                                            <a href="{{ route('frontend.cart.delete', $cart->uuid) }}">
+                                            <a href="{{ route('frontend.cart.delete', $cart->id) }}">
                                                 <i class="ti-trash remove-icon"></i>
                                             </a>
                                         </td>

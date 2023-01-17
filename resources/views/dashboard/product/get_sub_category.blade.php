@@ -1,7 +1,7 @@
 @php $x = 1 @endphp
 <option selected disabled value="">Choose...</option>
 @foreach ($inputs as $input)
-    <option value="{{ $input->uuid }}">{{ $input->name }}</option>
+    <option value="{{ $input->id }}">{{ $input->name }}</option>
 @endforeach
 <style>
     p {

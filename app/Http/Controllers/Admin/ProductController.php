@@ -20,7 +20,7 @@ class ProductController extends Controller
         }
         if ($request->ajax()) {
             user()->role == 1 ? $products = Product::with(['category','subCategory','file'])->orderBy('name') :
-            $products = Product::whereUser_uuid(user()->uuid)->orderBy('name');
+            $products = Product::whereUser_id(user()->id)->orderBy('name');
             return DataTables::of($products)
                 ->addIndexColumn()
                 ->addColumn('image', function ($row) {
@@ -41,10 +41,10 @@ class ProductController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '';
                     if (userCan('product-edit')) {
-                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.product.edit', $row->uuid) , 'row' => $row]);
+                        $btn .= view('button', ['type' => 'ajax-edit', 'route' => route('admin.product.edit', $row->id) , 'row' => $row]);
                     }
                     if (userCan('product-delete')) {
-                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.product.destroy', $row->uuid), 'row' => $row, 'src' => 'dt']);
+                        $btn .= view('button', ['type' => 'ajax-delete', 'route' => route('admin.product.destroy', $row->id), 'row' => $row, 'src' => 'dt']);
                     }
                     return $btn;
                 })
@@ -52,16 +52,16 @@ class ProductController extends Controller
                 ->make(true);
         }
         if(user()->role == 1){
-            $categories = Category::orderBy('name')->get(['uuid','name']);
+            $categories = Category::orderBy('name')->get(['id','name']);
         }else{
-            $categories = Category::whereUser_uuid(user()->uuid)->orderBy('name')->get(['uuid','name']);
+            $categories = Category::whereUser_id(user()->id)->orderBy('name')->get(['id','name']);
         }
         return view('dashboard.product.index', compact('categories'));
     }
 
     public function getSubCategory(Request $request)
     {
-        $inputs = SubCategory::whereCategory_uuid($request->category_uuid)->get(['uuid','name']);
+        $inputs = SubCategory::whereCategory_id($request->category_id)->get(['id','name']);
         $sub_categories = view('dashboard.product.get_sub_category', ['inputs' => $inputs])->render();
         return response()->json(['status' => 'success', 'html' => $sub_categories, 'sub_categories']);
     }
@@ -72,7 +72,7 @@ class ProductController extends Controller
             return $error;
         }
         $data = $productStoreRequest->validated();
-        $data['user_uuid'] = user()->uuid;
+        $data['user_id'] = user()->id;
         $data['type'] = 1;
         $data['tran_id'] = transaction_id("INS");// In stock
         $data['weight'] = $request->weight.' '.$request->weight_unit;
@@ -85,7 +85,7 @@ class ProductController extends Controller
             $destinationPath = 'uploads/images/product'.'/';
             $v->move($destinationPath, $fileName);
 
-            $file_data['product_uuid'] = $product->uuid;
+            $file_data['product_id'] = $product->id;
             $file_data['type']         = $request->file_type[$k];
             $file_data['file']         = $fileName;
             $file_data['title']        = $request->file_title[$k];

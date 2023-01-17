@@ -27,7 +27,7 @@
                                         {{-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> --}}
                                     </div>
                                     <div class="product-action-2">
-                                        <form onsubmit="cart(event,'{{ $product->uuid }}')">
+                                        <form onsubmit="cart(event,'{{ $product->id }}')">
                                             @csrf
                                             <button type="submit">Add to cart </button>
                                         </form>

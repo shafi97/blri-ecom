@@ -9,25 +9,25 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-    public function productByCat($uuid)
+    public function productByCat($id)
     {
-        $products = Product::with(['file'])->whereCategory_uuid($uuid)->get();
+        $products = Product::with(['file'])->whereCategory_id($id)->get();
         return view('frontend.product_by_cat', compact('products'));
     }
 
-    public function productBySubCat($uuid)
+    public function productBySubCat($id)
     {
-        $products = Product::with(['file'])->whereSub_category_uuid($uuid)->get();
+        $products = Product::with(['file'])->whereSub_category_id($id)->get();
         return view('frontend.product_by_cat', compact('products'));
     }
 
-    public function show($uuid)
+    public function show($id)
     {
         // return user()->district_id;
-        $product = Product::with(['file'])->whereUuid($uuid)->first();
+        $product = Product::with(['file'])->whereid($id)->first();
 
         auth()->check() ?
-        $cart = Cart::whereUser_uuid(user()->uuid)->whereProduct_uuid($uuid)->first() :
+        $cart = Cart::whereUser_id(user()->id)->whereProduct_id($id)->first() :
         $cart = 1;
 
 

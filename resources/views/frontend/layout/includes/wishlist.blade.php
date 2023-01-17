@@ -9,7 +9,7 @@
         <ul class="shopping-list">
             @foreach ($wishlists as $wishlist)
                 <li>
-                    <a href="#" onClick="wishlistDelete(event, '{{ $wishlist->uuid }}')" class="remove"
+                    <a href="#" onClick="wishlistDelete(event, '{{ $wishlist->id }}')" class="remove"
                         title="Remove this item"><i class="fa fa-remove"></i></a>
                     <a class="cart-img" href="#"><img
                             src="{{ imagePath('product', $wishlist->product->file->file) }}" alt="#"></a>

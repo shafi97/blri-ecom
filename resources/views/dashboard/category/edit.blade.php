@@ -6,7 +6,7 @@
                 <h5 class="modal-title">Add Admin User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.category.update', $category->uuid) }}"
+            <form onsubmit="ajaxStore(event, this, 'editModal')" action="{{ route('admin.category.update', $category->id) }}"
                 method="POST">
                 @csrf @method('PUT')
                 <input type="hidden" name="update" value="1">
