@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sliders', function (Blueprint $table) {
-            $table->id('id')->unique();
-            $table->string('user_id')->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('image',191);
             $table->text('text')->nullable();
             $table->timestamps();

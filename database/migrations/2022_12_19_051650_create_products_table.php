@@ -14,13 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('id')->unique();
-            $table->string('user_id')->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('category_id')->index();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('sub_category_id')->nullable()->index();
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sub_category_id')->constrained()->cascadeOnDelete();
             $table->string('tran_id',64);
             $table->tinyInteger('type')->comment('1=in stock, 2=sale');
             $table->string('name',255);
