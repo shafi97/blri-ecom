@@ -30,9 +30,170 @@
     </section>
     <!--/ End Slider Area -->
 
+
+
+
+    <style>
+        /* body{
+                    background-color: #f5f4f5;
+                    margin-top:20px;
+                } */
+
+        /* Tr Job Post */
+
+        .tr-job-posted {
+            padding: 60px 0px;
+        }
+
+        .job-item {
+            background-color: #fff;
+        }
+
+        .job-tab .nav-tabs {
+            margin-bottom: 20px;
+            border-bottom: 0;
+        }
+
+        .job-tab .nav-tabs>li {
+            float: none;
+            display: inline;
+        }
+
+        .job-tab .nav-tabs li {
+            margin-right: 15px;
+        }
+
+        .job-tab .nav-tabs li:last-child {
+            margin-right: 0;
+        }
+
+        .job-tab .nav-tabs {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .job-tab .nav-tabs:after {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #fff;
+            z-index: -1;
+        }
+
+        .job-tab .nav-tabs>li a {
+            display: inline-block;
+            background-color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #000;
+            padding: 5px 30px;
+        }
+
+        .job-tab .nav-tabs>li>a.active,
+        .job-tab .nav-tabs>li a.active>:focus,
+        .job-tab .nav-tabs>li>a.active:hover,
+        .job-tab .nav-tabs>li>a:hover {
+            border: none;
+            background-color: #008def;
+            color: #fff;
+        }
+
+        .job-item {
+            border-radius: 3px;
+            position: relative;
+            margin-bottom: 30px;
+            z-index: 1;
+        }
+
+        .job-item .btn.btn-primary {
+            text-transform: capitalize;
+        }
+
+        .tab-content .col-md-2 {
+            padding-right: 5px;
+            padding-left: 5px;
+            margin-bottom: 10px
+        }
+
+        .tab-content .card-body {
+            padding: 5px 5px 5px 5px;
+        }
+
+        .tr-job-posted .title {
+            font-size: 30px;
+        }
+    </style>
+
+    <section class="tr-job-posted section-padding">
+        <div class="container">
+            <p class="title">Discount's Product</p>
+            <div class="job-tab text-center">
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    @foreach ($discountProducts->groupBy('category_id') as $cat)
+                        @php
+                            $category = $cat->first();
+                        @endphp
+                        <li role="presentation" class="{{ $loop->first ? 'active' : '' }}">
+                            <a class="{{ $loop->first ? 'active show' : '' }}" href="#hot{{ $category->id }}"
+                                aria-controls="hot-jobs" role="tab" data-toggle="tab"
+                                aria-selected="true">{{ $category->category->name }}</a>
+                        </li>
+                    @endforeach
+
+                </ul>
+                <div class="tab-content text-left">
+                    @foreach ($discountProducts->groupBy('category_id') as $cat)
+                        @php
+                            $category = $cat->first();
+                        @endphp
+                        <div role="tabpanel" class="tab-pane fade {{ $loop->first ? 'active show' : '' }}"
+                            id="hot{{ $category->id }}">
+                            <div class="row">
+                                @foreach ($cat->take(12) as $discountProduct)
+                                    <div class="col-md-2">
+                                        <div class="card" style="width: 100%;">
+                                            <div style="height: 130px;">
+                                                <img class="card-img-top"
+                                                    src="{{ imagePath('product', $discountProduct->file->file) }}">
+                                            </div>
+
+                                            <div class="card-body" style="background: #fff">
+                                                {{-- <h5 class="card-title">{{ $discountProduct->id }}</h5> --}}
+                                                <p class="card-text">
+                                                <div class="product-price  text-center">
+                                                    <span>&#2547;{{ number_format($discountProduct->price - ($discountProduct->price * $discountProduct->discount) / 100) }}</span>
+                                                </div>
+                                                <div class="discount  text-center">
+                                                    @if ($discountProduct->discount > 0)
+                                                        <span
+                                                            class="tk">&#2547;{{ number_format($discountProduct->price) }}</span>
+                                                        <span>-{{ number_format($discountProduct->discount) }}%</span>
+                                                    @else
+                                                        <br>
+                                                    @endif
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div><!-- /.row -->
+                        </div><!-- /.tab-pane -->
+                    @endforeach
+                </div>
+            </div><!-- /.job-tab -->
+        </div><!-- /.container -->
+    </section>
+
     <!-- Start Small Banner  -->
-    {{-- <section class="small-banner section">
-		<div class="container-fluid">
+    <section class="small-banner section">
+		<div class="container">
 			<div class="row">
 				<!-- Single Banner  -->
 				<div class="col-lg-4 col-md-6 col-12">
@@ -72,12 +233,76 @@
 				<!-- /End Single Banner  -->
 			</div>
 		</div>
-	</section> --}}
+	</section>
     <!-- End Small Banner -->
 
-    <style>
 
-    </style>
+
+<style>
+    .product_by_cat .col-sm-6, .product_by_cat .col-md-2 {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-bottom: 10px
+    }
+    .product_by_cat .title_area {
+        background: #008def;
+        margin-bottom: 10px;
+        padding: 10px 10px 0px 10px;
+    }
+    .product_by_cat .title_area p, .product_by_cat .title_area a{
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .product_by_cat .product_area {
+        margin-bottom: 50px;
+    }
+</style>
+    <section class="product_by_cat">
+        <div class="container">
+            @foreach ($products->groupBy('category_id') as $pro)
+                @php
+                    $product = $pro->first();
+                @endphp
+                <div class="row title_area">
+                    <div class="col-sm-6"><p>{{ $product->category->name }}</p></div>
+                    <div class="col-sm-6 text-right"><a href="">Show All</a></div>
+                </div>
+                <div class="row product_area">
+                    @foreach ($products->take(6) as $product)
+                        <div class="col-md-2">
+                            <a href="">
+                                <div class="card" style="width: 100%;">
+                                    <div style="height: 130px;">
+                                        <img class="card-img-top" src="{{ imagePath('product', $product->file->file) }}">
+                                    </div>
+
+                                    <div class="card-body" style="background: #fff">
+                                        {{-- <h5 class="card-title">{{ $product->id }}</h5> --}}
+                                        <p class="card-text">
+                                        <div class="product-price  text-center">
+                                            <span>&#2547;{{ number_format($product->price - ($product->price * $product->discount) / 100) }}</span>
+                                        </div>
+                                        <div class="discount  text-center">
+                                            @if ($product->discount > 0)
+                                                <span class="tk">&#2547;{{ number_format($product->price) }}</span>
+                                                <span>-{{ number_format($product->discount) }}%</span>
+                                            @else
+                                                <br>
+                                            @endif
+                                        </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+
 
 
 
@@ -86,7 +311,7 @@
             <div class="row ">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Top Discount Item</h2>
+                        <h2>Latest Product</h2>
                     </div>
                 </div>
             </div>
@@ -177,12 +402,15 @@
                     <div class="col-lg-2 col-md-3">
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="{{ route('product.show', $product->id) }}">
-                                    <img class="default-img" src="{{ imagePath('product', $product->file->file) }}"
-                                        alt="#">
-                                    <img class="hover-img" src="{{ imagePath('product', $product->file->file) }}"
-                                        alt="#">
-                                </a>
+                                <div style="height: 130px">
+                                    <a href="{{ route('product.show', $product->id) }}">
+                                        <img class="default-img" src="{{ imagePath('product', $product->file->file) }}"
+                                            alt="#">
+                                        <img class="hover-img" src="{{ imagePath('product', $product->file->file) }}"
+                                            alt="#">
+                                    </a>
+                                </div>
+
                                 <div class="button-head">
                                     <div class="product-action">
                                         {{-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a> --}}

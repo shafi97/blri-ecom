@@ -24,19 +24,19 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|max:255',
-            'category_id'     => 'required|id',
-            'sub_category_id' => 'nullable|id',
-            'weight'            => 'required|string|max:32',
-            'weight_unit'       => 'required|string|max:32',
-            'd_o_b'             => 'nullable|date',
-            'size'              => 'nullable|string|max:191',
-            'color'             => 'nullable|string|max:191',
-            'quantity'          => 'nullable|integer',
-            'price'             => 'required',
-            'discount'          => 'nullable',
-            'product_code'      => 'nullable|string|max:191',
-            'description'       => 'nullable|string|text',
+            'name'            => 'required|max:255',
+            'category_id'     => 'required',
+            'sub_category_id' => 'nullable',
+            'weight'          => 'required|string|max:32',
+            'weight_unit'     => 'required|string|max:32',
+            'd_o_b'           => 'nullable|date',
+            'size'            => 'nullable|string|max:191',
+            'color'           => 'nullable|string|max:191',
+            'quantity'        => 'nullable|integer',
+            'price'           => 'required',
+            'discount'        => 'nullable',
+            'product_code'    => 'nullable|string|max:191',
+            'description'     => 'nullable|string',
         ];
     }
 }

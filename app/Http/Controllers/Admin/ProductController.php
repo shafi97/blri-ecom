@@ -93,7 +93,6 @@ class ProductController extends Controller
         }
 
         try {
-
             return response()->json(['message'=> __('app.success-message')], 200);
         } catch (\Exception $e) {
             // return response()->json(['message'=>__('app.oops')], 500);
@@ -129,13 +128,21 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy(Category $category)
+    public function destroy(Product $product)
     {
-        if ($error = $this->authorize('category-delete')) {
+        if ($error = $this->authorize('product-delete')) {
             return $error;
         }
         try {
-            $category->delete();
+            $productFiles = ProductFile::whereProduct_id($product->id)->get();
+            foreach($productFiles as $productFile){
+                $path = 'uploads/images/product/' . $productFile->file;
+                if(file_exists($path)){
+                    unlink($path);
+                }
+            }
+            ProductFile::whereProduct_id($product->id)->delete();
+            $product->delete();
             return response()->json(['message'=> __('app.success-message')], 200);
         } catch (\Exception $e) {
             return response()->json(['message'=> __('app.oops')], 500);

@@ -11,12 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes, Hasid;
+    use HasFactory, SoftDeletes;
     protected $guarded = ["id"];
 
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+
 
     public function category()
     {

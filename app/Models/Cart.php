@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cart extends Model
 {
-    use HasFactory, Hasid;
+    use HasFactory;
     protected $guarded = ["id"];
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+
 
     public function product()
     {

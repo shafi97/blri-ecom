@@ -51,7 +51,7 @@ class SubCategoryController extends Controller
             return $error;
         }
         $data = $request->validate([
-            'category_id' =>'required|id',
+            'category_id' =>'required',
             'name' =>'required|unique:sub_categories,name|string|max:191',
         ]);
         $data['user_id'] = user()->id;

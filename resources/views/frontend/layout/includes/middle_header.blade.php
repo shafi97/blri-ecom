@@ -48,10 +48,9 @@
                         <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                     </div> --}}
                     <div class="sinlge-bar shopping" id="wishlist">
-                        <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i> <span class="total-count">0</span></a>
+                        
                     </div>
                     <div class="sinlge-bar shopping" id="cart">
-                        <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">0</span></a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 @if ($wishlists->count() > 0)
-    <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i> <span class="total-count">{{ $wishlists->count() }}</span></a>
+    <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i> <span
+            class="total-count">{{ $wishlists->count() }}</span></a>
     {{-- <!-- Shopping Item --> --}}
     <div class="shopping-item">
         <div class="dropdown-cart-header">
@@ -27,4 +28,7 @@
         </div>
     </div>
     {{-- <!--/ End Shopping Item --> --}}
+@else
+    <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i> <span
+            class="total-count">0</span></a>
 @endif

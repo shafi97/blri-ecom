@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SubCategory extends Model
 {
-    use HasFactory, SoftDeletes, Hasid;
+    use HasFactory, SoftDeletes;
     protected $guarded = ["id"];
 
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+
 
     public function category()
     {

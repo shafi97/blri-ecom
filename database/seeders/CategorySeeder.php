@@ -18,12 +18,36 @@ class CategorySeeder extends Seeder
     {
         $now = Carbon::now();
         $categories = [
-            ['name' => 'Buffalo', 'created_at' => $now],
-            ['name' => 'Cheep', 'created_at' => $now],
-            ['name' => 'Cow', 'created_at' => $now],
-            ['name' => 'Goat', 'created_at' => $now],
-            ['name' => 'Chicken', 'created_at' => $now],
-            ['name' => 'Duck', 'created_at' => $now],
+            [
+                'user_id'       => 1,
+                'name'       => 'Buffalo',
+                'created_at' => $now
+            ],
+            [
+                'user_id'       => 1,
+                'name'       => 'Sheep',
+                'created_at' => $now
+            ],
+            [
+                'user_id'       => 1,
+                'name'       => 'Cow',
+                'created_at' => $now
+            ],
+            [
+                'user_id'       => 1,
+                'name'       => 'Goat',
+                'created_at' => $now
+            ],
+            [
+                'user_id'       => 1,
+                'name'       => 'Chicken',
+                'created_at' => $now
+            ],
+            [
+                'user_id'       => 1,
+                'name'       => 'Duck',
+                'created_at' => $now
+            ],
         ];
         Category::insert($categories);
     }

@@ -1,9 +1,9 @@
 @extends('dashboard.layout.app')
 @section('title', 'Product')
 @section('content')
-@push('custom_css')
-@include('dashboard.layout.includes.data_table_css')
-@endpush
+    @push('custom_css')
+        @include('dashboard.layout.includes.data_table_css')
+    @endpush
     <!-- start page content wrapper-->
     <div class="page-content-wrapper">
         <!-- start page content-->
@@ -26,7 +26,8 @@
             <!--end breadcrumb-->
             <div class="d-flex justify-content-between index_title">
                 <h6 class="mb-0">Product List</h6>
-                <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add New</a>
+                <a data-toggle="modal" data-bs-target="#createModal" data-bs-toggle="modal" class="btn btn-primary">Add
+                    New</a>
             </div>
 
             <hr />
@@ -65,129 +66,135 @@
         @include('dashboard.product.create')
     @endcan
     @push('custom_scripts')
-    @include('dashboard.layout.includes.data_table_js')
-    <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            var i         = 1;
-            $('.addrow').click(function()
-            {
-                let type      = $('#type').val();
-                let type_text = $('#type option:selected').text();
-                let name      = $('#name').val();
-                i++;
-                html ='';
-                html +='<tr id="remove_'+i+'" class="post_item">';
-                html +='    <td><select name="file_type[]" class="form-control form-control-sm"><option value="">Choose...</option><option value="1">Image</option><option value="2">Video</option><option value="3">Youtube Link</option></select></td>';
-                html +='    <td><input type="file" name="file_file[]" multiple id="document_1" class="form-control form-control-sm"/></td>';
-                html +='    <td><input type="search" name="file_title[]" class="form-control form-control-sm"/></td>';
-                html +='	<td style="width: 20px"  class="col-md-2"><span class="btn btn-sm btn-danger" onclick="return remove('+i+')"><i class="fa fa-times" aria-hidden="true"></i></span></td>';
-                html +='</tr>';
-                $('#showItem').append(html);
-            });
-        });
-        function remove(id)
-        {
-            $('#remove_'+id).remove();
-            total_price();
-        }
+        @include('dashboard.layout.includes.data_table_js')
 
-        $(function() {
-            $('#data_table').DataTable({
-                processing: true,
-                serverSide: true,
-                deferRender: true,
-                ordering: true,
-                scrollX: true,
-                scrollY: 400,
-                ajax: "{{ route('admin.product.index') }}",
-                columns: [
-                    {
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        searchable: false,
-                        orderable: false,
-                    },
-                    {
-                        data: 'category_name',
-                        name: 'category_name'
-                    },
-                    {
-                        data: 'sub_category_name',
-                        name: 'sub_category_name'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'weight',
-                        name: 'weight'
-                    },
-                    {
-                        data: 'age',
-                        name: 'age'
-                    },
-                    {
-                        data: 'size',
-                        name: 'size'
-                    },
-                    {
-                        data: 'color',
-                        name: 'color'
-                    },
-                    {
-                        data: 'price',
-                        name: 'price'
-                    },
-                    {
-                        data: 'discount',
-                        name: 'discount'
-                    },
-                    {
-                        data: 'product_code',
-                        name: 'product_code'
-                    },
-                    {
-                        data: 'description',
-                        name: 'description'
-                    },
-                    {
-                        data: 'image',
-                        name: 'image'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ],
-                scroller: {
-                    loadingIndicator: true
-                }
+        <script>
+            $(document).ready(function() {
+                var i = 1;
+                $('.addrow').click(function() {
+                    let type = $('#type').val();
+                    let type_text = $('#type option:selected').text();
+                    let name = $('#name').val();
+                    i++;
+                    html = '';
+                    html += '<tr id="remove_' + i + '" class="post_item">';
+                    html +=
+                        '    <td><select name="file_type[]" class="form-control form-control-sm"><option value="">Choose...</option><option value="1">Image</option><option value="2">Video</option><option value="3">Youtube Link</option></select></td>';
+                    html +=
+                        '    <td><input type="file" name="file_file[]" multiple id="document_1" class="form-control form-control-sm"/></td>';
+                    html +=
+                        '    <td><input type="search" name="file_title[]" class="form-control form-control-sm"/></td>';
+                    html +=
+                        '	<td style="width: 20px"  class="col-md-2"><span class="btn btn-sm btn-danger" onclick="return remove(' +
+                        i + ')"><i class="fa fa-times" aria-hidden="true"></i></span></td>';
+                    html += '</tr>';
+                    $('#showItem').append(html);
+                });
             });
-        });
 
-    $('#category_id').change(function () {
-        $.ajax({
-            url:'{{route("admin.getSubCategory")}}',
-            method:'get',
-            data:{
-                category_id : $(this).val(),
-            },
-            success: function (res) {
-                if (res.status == 'success') {
-                    $('#sub_category').html(res.html);
-                }
+            function remove(id) {
+                $('#remove_' + id).remove();
+                total_price();
             }
-        });
-    })
 
-    CKEDITOR.replace('description');
+            $(function() {
+                $('#data_table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    deferRender: true,
+                    ordering: true,
+                    scrollX: true,
+                    scrollY: 400,
+                    ajax: "{{ route('admin.product.index') }}",
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            searchable: false,
+                            orderable: false,
+                        },
+                        {
+                            data: 'category_name',
+                            name: 'category_name'
+                        },
+                        {
+                            data: 'sub_category_name',
+                            name: 'sub_category_name'
+                        },
+                        {
+                            data: 'name',
+                            name: 'name'
+                        },
+                        {
+                            data: 'weight',
+                            name: 'weight'
+                        },
+                        {
+                            data: 'age',
+                            name: 'age'
+                        },
+                        {
+                            data: 'size',
+                            name: 'size'
+                        },
+                        {
+                            data: 'color',
+                            name: 'color'
+                        },
+                        {
+                            data: 'price',
+                            name: 'price'
+                        },
+                        {
+                            data: 'discount',
+                            name: 'discount'
+                        },
+                        {
+                            data: 'product_code',
+                            name: 'product_code'
+                        },
+                        {
+                            data: 'description',
+                            name: 'description'
+                        },
+                        {
+                            data: 'image',
+                            name: 'image'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        },
+                    ],
+                    scroller: {
+                        loadingIndicator: true
+                    }
+                });
+            });
+        </script>
+        <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
+        <script>
+            $('#category_id').change(function() {
+                $.ajax({
+                    url: '{{ route('admin.getSubCategory') }}',
+                    method: 'get',
+                    data: {
+                        category_id: $(this).val(),
+                    },
+                    success: function(res) {
+                        if (res.status == 'success') {
+                            $('#sub_category').html(res.html);
+                        }
+                    }
+                });
+            })
+
+            CKEDITOR.replace('description');
+
             function ajaxStorePage(e, form, modal) {
                 e.preventDefault();
-                CKEDITOR.instances['text'].updateElement();
+                CKEDITOR.instances['description'].updateElement();
                 // let formData = $(form).serialize();
                 let formData = new FormData(form);
                 $.ajax({
@@ -218,8 +225,6 @@
                     }
                 });
             }
-
-
-    </script>
+        </script>
     @endpush
 @endsection

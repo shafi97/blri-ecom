@@ -27,4 +27,6 @@
         </div>
     </div>
     {{-- <!--/ End Shopping Item --> --}}
+@else
+<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">0</span></a>
 @endif

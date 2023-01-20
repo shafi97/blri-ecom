@@ -128,7 +128,7 @@
 
                         <div class="col-md-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea name="" id="description" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                             @if ($errors->has('description'))
                                 <div class="alert alert-danger">{{ $errors->first('description') }}</div>
                             @endif

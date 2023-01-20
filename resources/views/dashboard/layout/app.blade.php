@@ -91,15 +91,18 @@
     <script src="{{ asset('backend/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
+    {{-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> --}}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('backend/js/plugins-init.js') }}"></script>
     @include('sweetalert::alert')
-    @stack('custom_scripts')
+    
     {{-- Main JS --}}
     <script src="{{ asset('backend/js/main.js') }}"></script>
+    @stack('custom_scripts')
+
 </body>
 
 </html>
