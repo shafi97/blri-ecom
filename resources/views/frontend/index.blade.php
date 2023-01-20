@@ -123,15 +123,17 @@
         .tab-content .card-body {
             padding: 5px 5px 5px 5px;
         }
-
-        .tr-job-posted .title {
-            font-size: 30px;
-        }
     </style>
 
     <section class="tr-job-posted section-padding">
         <div class="container">
-            <p class="title">Discount's Product</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Discount's Product</h2>
+                    </div>
+                </div>
+            </div>
             <div class="job-tab text-center">
                 <ul class="nav nav-tabs justify-content-center" role="tablist">
                     @foreach ($discountProducts->groupBy('category_id') as $cat)
